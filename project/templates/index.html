@@ -1,0 +1,61 @@
+{% with messages = get_flashed_messages() %} {% if messages %} {% for message in
+messages %}
+<p>{{message}}</p>
+{% endfor %} {% endif %} {% endwith %}
+
+<form action="/add_user">
+  <input type="text" name="username" placeholder="username" />
+  <input type="text" name="numeroDocumento" placeholder="numeroDocumento" />
+  <input type="text" name="nombres" placeholder="nombres" />
+  <input type="text" name="apellidos" placeholder="apellidos" />
+  <input type="text" name="fecha_nacimiento" placeholder="fecha_nacimiento" />
+  <input type="text" name="password" placeholder="password" />
+  <input type="text" name="sexo" placeholder="sexo" />
+  <input type="text" name="direccion" placeholder="direccion" />
+  <input type="text" name="correo" placeholder="correo" />
+  <input type="password" name="password" placeholder="password" />
+  <select name="tipoDocumento">
+    {% for tipo_documento in tipos %}
+    <option value="{{tipo_documento.0}}">{{tipo_documento.1}}</option>
+    {% endfor %}
+  </select>
+  <select name="tipoRol">
+    {% for rol in roles %}
+    <option value="{{rol.0}}">{{rol.1}}</option>
+    {% endfor %}
+  </select>
+</form>
+<form action="/add_mascota">
+  <input type="text" name="nombre" placeholder="nombre" />
+  <input type="text" name="id_usuario" placeholder="id_usuario" />
+  <input type="text" name="sexo" placeholder="sexo" />
+  <input type="text" name="tamaño" placeholder="tamaño" />
+  <input type="text" name="fecha_nacimiento" placeholder="fecha_nacimiento" />
+  <input type="submit" value="submit" />
+</form>
+
+<form action="/add_tipo_cedula" method="POST">
+  <input type="text" name="tipo_documento" placeholder="nuevo tipo de cedula" />
+  <button type="submit">Save</button>
+</form>
+<form action="/add_rol" method="POST">
+  
+  <input type="text" name="descripcion" placeholder="nuevo rol" />
+  <button type="submit">Save</button>
+</form>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Tipo</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for tipo in tipos %}
+    <tr>
+      <td>{{tipo.0}}</td>
+      <td>{{tipo.1}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
