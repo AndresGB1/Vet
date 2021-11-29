@@ -15,9 +15,9 @@ def add_mascota():
         fechaNacimiento = request.form['fechaNacimiento']
         estado = True;
         cur = mysql.connection.cursor()
-        cur .execute("INSERT INTO usuario (username, numeroDoc, nombres, apellidos, fechaNacimiento,pasword,sexo,direccion,correo,estado) VALUES(%s, %s,%s, %s,%s, %s,%s, %s,%s, %s,)", (username, numeroDoc, nombres, apellidos, fecha_nacimiento,password,sexo,direccion,correo,estado))  
+        cur .execute("INSERT INTO mascota (id_usuario, id_raza, id_color, nombre, sexo, peso, fechaNacimiento, estado) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (id_usuario, id_raza, id_color, nombre, sexo, peso, fechaNacimiento, estado))
         mysql.connection.commit()
-        flash('User added successfully!');
+        flash('Mascota added successfully!');
         return redirect(url_for('Index'))
 
 #edit

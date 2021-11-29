@@ -24,7 +24,7 @@ def add_user():
         return redirect(url_for('Index'))
 
 #edit
-@routes.route('/user/edit/<id>', methods = ['POST', 'GET'])
+@routes.route('/edit_user/<id>', methods = ['POST', 'GET'])
 def get_contact(id):
     cur = mysql.connection.cursor()
     cur.execute('SELECT * FROM usuario WHERE id = %s', (id))
