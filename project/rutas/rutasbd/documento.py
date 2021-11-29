@@ -2,8 +2,10 @@ from flask import Flask, render_template, redirect,url_for,request, flash
 from flask_mysqldb import MySQL
 
 
-app = Flask(__name__)
-mysql = MySQL(app)
+import App 
+
+app = App.app
+mysql = App.mysql
 
 @app.route('/add_documento', methods=['POST'])
 def add_documento():

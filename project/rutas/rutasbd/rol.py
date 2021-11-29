@@ -1,11 +1,11 @@
 from flask import  render_template, redirect,url_for,request, flash
 from flask import Blueprint
+from .. import *
 
-rol_api = Blueprint('rol_api', __name__)
 
 
 #Create
-@rol_api.route('/add_rol', methods=['POST'])
+@routes.route('/add_rol', methods=['POST'])
 def add_rol():
     try:
         if request.method == 'POST':
@@ -16,12 +16,13 @@ def add_rol():
             mysql.connection.commit()
             flash('Rol agregado correctamente')
             print("Agregado prros :D ")
-            return redirect(url_for('Index'))
+            return redirect('/')
     except Exception as e:
         flash('Error al agregar el rol')
-        return redirect(url_for('Index'))
+        print("No funciono ",e)
+        return redirect('/')
 
-@rol_api.route('/get_rol', methods=['GET'])
+@routes.route('/get_rol', methods=['GET'])
 def get_rol():
     try:
         cur = mysql.connection.cursor()
@@ -34,7 +35,7 @@ def get_rol():
         return redirect(url_for('Index'))
 
 
-@rol_api.route('/edit_rol', methods=['POST'])
+@routes.route('/edit_rol', methods=['POST'])
 def edit_rol():
     try:
         if request.method == 'POST':

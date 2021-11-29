@@ -1,26 +1,18 @@
 from flask import Flask, render_template, redirect,url_for,request, flash
-from flask_mysqldb import MySQL
+from .. import *
 
 
-import App 
-
-app = App.app
-mysql = App.mysql
-
-#CRUD
-#Create
-@app.route('/add_user', methods=['POST'])
-def add_user():
+#Añadiendo id_usuario id_raza estado id_color nombre sexo peso fechaNacimiento
+@routes.route('user/<id>/add_mascota', methods=['POST'])
+def add_mascota():
     if(request.method == 'POST'):
-        username = request.form['username']
-        numeroDoc = request.form['numeroDoc']
-        nombres = request.form['nombres']
-        apellidos = request.form['appellidos']
-        fecha_nacimiento = request.form['fecha_nacimiento']
-        password = request.form['password']
+        id_usuario = request.form['id_usuario']
+        id_raza = request.form['id_raza']
+        id_color = request.form['id_color']
+        nombre = request.form['nombre']
         sexo = request.form['sexo']
-        direccion = request.form['direccion']
-        correo = request.form['correo']
+        peso = request.form['peso']
+        fechaNacimiento = request.form['fechaNacimiento']
         estado = True;
         cur = mysql.connection.cursor()
         cur .execute("INSERT INTO usuario (username, numeroDoc, nombres, apellidos, fechaNacimiento,pasword,sexo,direccion,correo,estado) VALUES(%s, %s,%s, %s,%s, %s,%s, %s,%s, %s,)", (username, numeroDoc, nombres, apellidos, fecha_nacimiento,password,sexo,direccion,correo,estado))  
@@ -29,7 +21,7 @@ def add_user():
         return redirect(url_for('Index'))
 
 #edit
-@app.route('user/edit/<id>', methods = ['POST', 'GET'])
+@routes.route('/user/<id>/edit_mascota/', methods = ['POST', 'GET'])
 def get_contact(id):
     cur = mysql.connection.cursor()
     cur.execute('SELECT * FROM usuario WHERE id = %s', (id))
@@ -38,7 +30,7 @@ def get_contact(id):
     return render_template('edit-user.html', contact = data[0])
 
 #edit
-@app.route('user/update/<id>', methods=['POST'])
+@routes.route('/user/update/<id>', methods=['POST'])
 def update_user(id):
     if request.method == 'POST':
         numeroDoc = request.form['numeroDoc']
