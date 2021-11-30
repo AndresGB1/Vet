@@ -1,30 +1,27 @@
 from flask import Flask, render_template, redirect,url_for,request, flash
-from .. import *
+from __init__ import *
 
 
-#CRUD
-#Create
-@routes.route('/add_user', methods=['POST'])
-def add_user():
+#Añadiendo id_usuario id_raza estado id_color nombre sexo peso fechaNacimiento
+@routes.route('user/<string:id>/add_mascota', methods=['POST'])
+def add_mascota(id):
     if(request.method == 'POST'):
-        username = request.form['username']
-        numeroDoc = request.form['numeroDoc']
-        nombres = request.form['nombres']
-        apellidos = request.form['appellidos']
-        fecha_nacimiento = request.form['fecha_nacimiento']
-        password = request.form['password']
+        id_usuario = id
+        id_raza = request.form['id_raza']
+        id_color = request.form['id_color']
+        nombre = request.form['nombre']
         sexo = request.form['sexo']
-        direccion = request.form['direccion']
-        correo = request.form['correo']
+        peso = request.form['peso']
+        fechaNacimiento = request.form['fechaNacimiento']
         estado = True;
         cur = mysql.connection.cursor()
-        cur .execute("INSERT INTO usuario (username, numeroDoc, nombres, apellidos, fechaNacimiento,pasword,sexo,direccion,correo,estado) VALUES(%s, %s,%s, %s,%s, %s,%s, %s,%s, %s,)", (username, numeroDoc, nombres, apellidos, fecha_nacimiento,password,sexo,direccion,correo,estado))  
+        cur .execute("INSERT INTO mascota (id_usuario, id_raza, id_color, nombre, sexo, peso, fechaNacimiento, estado) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (id_usuario, id_raza, id_color, nombre, sexo, peso, fechaNacimiento, estado))
         mysql.connection.commit()
-        flash('User added successfully!');
+        flash('Mascota added successfully!');
         return redirect(url_for('Index'))
 
 #edit
-@routes.route('/edit_user/<id>', methods = ['POST', 'GET'])
+@routes.route('/user/<id>/edit_mascota/', methods = ['POST', 'GET'])
 def get_contact(id):
     cur = mysql.connection.cursor()
     cur.execute('SELECT * FROM usuario WHERE id = %s', (id))

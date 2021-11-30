@@ -3,28 +3,7 @@ messages %}
 <p>{{message}}</p>
 {% endfor %} {% endif %} {% endwith %}
 
-<form action="/add_user">
-  <input type="text" name="username" placeholder="username" />
-  <input type="text" name="numeroDocumento" placeholder="numeroDocumento" />
-  <input type="text" name="nombres" placeholder="nombres" />
-  <input type="text" name="apellidos" placeholder="apellidos" />
-  <input type="text" name="fecha_nacimiento" placeholder="fecha_nacimiento" />
-  <input type="text" name="password" placeholder="password" />
-  <input type="text" name="sexo" placeholder="sexo" />
-  <input type="text" name="direccion" placeholder="direccion" />
-  <input type="text" name="correo" placeholder="correo" />
-  <input type="password" name="password" placeholder="password" />
-  <select name="tipoDocumento">
-    {% for tipo_documento in tipos %}
-    <option value="{{tipo_documento.0}}">{{tipo_documento.1}}</option>
-    {% endfor %}
-  </select>
-  <select name="tipoRol">
-    {% for rol in roles %}
-    <option value="{{rol.0}}">{{rol.1}}</option>
-    {% endfor %}
-  </select>
-</form>
+
 <form action="/add_mascota">
   <input type="text" name="nombre" placeholder="nombre" />
   <input type="text" name="id_usuario" placeholder="id_usuario" />

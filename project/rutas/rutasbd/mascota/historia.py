@@ -1,27 +1,28 @@
-from flask import Flask, render_template, redirect,url_for,request, flash
-from .. import *
+from flask import render_template, redirect,url_for,request, flash
+from __init__ import *
 
 
 #Añadiendo id_usuario id_raza estado id_color nombre sexo peso fechaNacimiento
-@routes.route('user/<id>/add_mascota', methods=['POST'])
+@routes.route('/admin/<id>/mascota/add_color', methods=['POST'])
 def add_mascota():
-    if(request.method == 'POST'):
-        id_usuario = request.form['id_usuario']
-        id_raza = request.form['id_raza']
-        id_color = request.form['id_color']
-        nombre = request.form['nombre']
-        sexo = request.form['sexo']
-        peso = request.form['peso']
-        fechaNacimiento = request.form['fechaNacimiento']
-        estado = True;
-        cur = mysql.connection.cursor()
-        cur .execute("INSERT INTO mascota (id_usuario, id_raza, id_color, nombre, sexo, peso, fechaNacimiento, estado) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (id_usuario, id_raza, id_color, nombre, sexo, peso, fechaNacimiento, estado))
-        mysql.connection.commit()
-        flash('Mascota added successfully!');
-        return redirect(url_for('Index'))
+    try:
+        if request.method == 'POST':
+            nombre = request.form['nombre']
+            estado = True
+            cur = mysql.connection.cursor()
+            cur.execute("INSERT INTO color (nombre, estado) VALUES(%s, %s)", (nombre, estado))
+            mysql.connection.commit()
+            flash('Nombre agregado correctamente')
+            print("Agregado prros :D ")
+            return redirect('/')
+    except Exception as e:
+        flash('Error al agregar el Nombre')
+        print("No funciono ",e)
+        return redirect('/')
+       
 
 #edit
-@routes.route('/user/<id>/edit_mascota/', methods = ['POST', 'GET'])
+@routes.route('/admin/<id>/mascota/set_color/<id>', methods = ['POST', 'GET'])
 def get_contact(id):
     cur = mysql.connection.cursor()
     cur.execute('SELECT * FROM usuario WHERE id = %s', (id))

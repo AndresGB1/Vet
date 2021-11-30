@@ -1,13 +1,9 @@
 from flask import Flask, render_template, redirect,url_for,request, flash
 from flask_mysqldb import MySQL
+from __init__ import *
 
 
-import App 
-
-app = App.app
-mysql = App.mysql
-
-@app.route('/add_documento', methods=['POST'])
+@routes.route('/add_documento', methods=['POST'])
 def add_documento():
     if(request.method == 'POST'):
         try:
@@ -21,7 +17,8 @@ def add_documento():
         except:
             flash('Error al agregar el documento')
             return redirect(url_for('Index'))
-@app.route('/get_tipo_documento', methods=['POST'])
+
+@routes.route('/get_tipo_documento', methods=['POST'])
 def get_tipo_documento():
     if(request.method == 'GET'):
         cur = mysql.connection.cursor()
@@ -29,5 +26,4 @@ def get_tipo_documento():
         data = cur.fetchall()
         mysql.connection.commit()
         flash('Index',tipos = data);
-if __name__ == '__main__':
-    app.run(port = 5000, debug = True)
+        return render_template('index.html')
