@@ -34,7 +34,7 @@ def get_rol():
         return data
     except:
         flash('Error al obtener los roles')
-        return redirect(url_for('Index'))
+        
 
 
 @routes.route('/edit_rol', methods=['POST'])

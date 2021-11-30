@@ -9,6 +9,7 @@
     <link rel="icon" href="{{ url_for('static',filename='/img/Logo2.png')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <title>FourPawsCitiziens | Registro</title>
 </head>
 
@@ -52,7 +53,7 @@
             </div>
 
         </div>
-        <form action="/add_user">
+        <form action="/registrar_usuario" method="POST" >
           <div class="col-md-12">
             <label for="validationServer01"  class="UserName"  style="text-align: right!important;">UserName</label>
             <input type="text" class="form-control  name="username" placeholder="username" />
@@ -71,35 +72,38 @@
           </div>
           <div class="col-md-12">
             <label for="validationServer01"  class="fecha_nacimiento" style="text-align: right!important;">Fecha de nacimiento</label>
-            <input type="text" class="form-control name="fecha_nacimiento" placeholder="fecha_nacimiento" />
+            <input class="form-control" type="date" placeholder="date">
           </div>
           <div class="col-md-12">
-            <label for="validationServer01 "class="Password" style="text-align: right!important;">Password</label>
+            <label for="validationServer01 style="text-align: right!important;">Password</label>
             <input type="text" class="form-control name="password" placeholder="password" />
           </div>
           <div class="col-md-12">
-            <label for="validationServer01" class="Sexo" style="text-align: right!important;">Sexo</label>
+            <label for="validationServer01" style="text-align: right!important;">Sexo</label>
             <input type="text" class="form-control name="sexo" placeholder="sexo" />
           </div>
           <div class="col-md-12">
-            <label for="validationServer01"  class="direccion" style="text-align: right!important;">Direccion</label>
+            <label for="validationServer01" style="text-align: right!important;">Direccion</label>
             <input type="text" class="form-control name="direccion" placeholder="direccion" />
           </div>
           <div class="col-md-12">
-            <label for="validationServer01"  class="email" style="text-align: right!important;">Email</label>
+            <label for="validationServer01"   style="text-align: right!important;">Email</label>
           <input type="text" class="form-control name="correo" placeholder="correo" />
           </div>
-          <label for="validationServer01"  class="email" style="text-align: right!important;">Tipo de documento</label>
-          <select name="tipoDocumento">
-            {% for tipo_documento in tipos %}
-            <option value="{{tipo_documento.0}}">{{tipo_documento.1}}</option>
-            {% endfor %}
-          </select>
-          <select name="tipoRol">
-            {% for rol in roles %}
-            <option value="{{rol.0}}">{{rol.1}}</option>
-            {% endfor %}
-          </select>
+          <div class="col-md-12"> 
+            <label for="validationServer01"   style="text-align: right!important;">Tipo de documento</label>
+            <select name="tipoDocumento">
+              {% for tipo_documento in tdocumentos %}
+              <option value="{{tipo_documento.0}}">{{tipo_documento.1}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-md-12">
+            <label for="validationServer01"   style="text-align: right!important;">Roles</label>            
+            <select name="tipoRol">
+              <option value="{{roles.0.0}}">{{roles.1.1}}</option>
+            </select>
+          </div>
           <div class="col-12">
             <button  type="submit" class="buttonOrange" id="buttonN">siguente</button>
           </div>
@@ -109,6 +113,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
 integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"> </script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>flatpickr("#myID", {})</script>
 </body>
 
 </html>

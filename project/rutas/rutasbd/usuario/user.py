@@ -2,18 +2,25 @@ from flask import Flask, render_template, redirect,url_for,request, flash
 from .. import mysql
 from .. import routes
 from .rol import *
+from .documento import *
 import bcrypt 
 
 #CRUD
 @routes.route('/registrar')
 def usuario():
-    return render_template('./usuario/usuario.html',roles = get_rol())
+    return render_template('./usuario/usuario.html',roles = get_rol(), tdocumentos = get_tipo_documento())
+    
+@routes.route('/registrar_usuario', methods=['POST'])
+def registrar_usuario():
+    if request.method == 'POST':
+        print("Entro")
+        add_user(2)
 
 @routes.route('/registrar_admin')
 def usuarioAdmin():
     return render_template('./usuario/usuario.html',roles = get_rol())
 
-@routes.route('/login', METHODS=['GET'])
+@routes.route('/login', methods=['GET'])
 def login():
     try:
         if request.method == 'GET':
@@ -57,23 +64,31 @@ def get_user(id):
 
 #Create
 @routes.route('/add_user', methods=['POST'])
-def add_user():
-    if(request.method == 'POST'):
-        username = request.form['username']
-        numeroDoc = request.form['numeroDoc']
-        nombres = request.form['nombres']
-        apellidos = request.form['appellidos']
-        fecha_nacimiento = request.form['fecha_nacimiento']
-        password = request.form['password']
-        sexo = request.form['sexo']
-        direccion = request.form['direccion']
-        correo = request.form['correo']
-        estado = True;
-        cur = mysql.connection.cursor()
-        cur .execute("INSERT INTO usuario (username, numeroDoc, nombres, apellidos, fechaNacimiento,pasword,sexo,direccion,correo,estado) VALUES(%s, %s,%s, %s,%s, %s,%s, %s,%s, %s,)", (username, numeroDoc, nombres, apellidos, fecha_nacimiento,password,sexo,direccion,correo,estado))  
-        mysql.connection.commit()
-        flash('User added successfully!');
-        return redirect(url_for('Index'))
+def add_user(id_rol):
+    try:
+        if(request.method == 'POST'):
+            username = request.form['username']
+            if username is None or username != get_user(username):
+                flash('Usuario ya existe')
+            else:
+                numeroDoc = request.form['numeroDoc']
+                nombres = request.form['nombres']
+                apellidos = request.form['appellidos']
+                fecha_nacimiento = request.form['fecha_nacimiento']
+                password = request.form['password']
+                sexo = request.form['sexo']
+                direccion = request.form['direccion']
+                correo = request.form['correo']
+                id_documento = request.form['tipo_documento']
+                estado = True;
+                cur = mysql.connection.cursor()
+                cur .execute("INSERT INTO usuario (username,id_rol,id_documento, numeroDoc, nombres, apellidos, fechaNacimiento,pasword,sexo,direccion,correo,estado) VALUES(%s,%s,%s ,%s,%s, %s,%s, %s,%s, %s,%s, %s,)", (username, id_rol,id_documento,numeroDoc, nombres, apellidos, fecha_nacimiento,password,sexo,direccion,correo,estado))  
+                mysql.connection.commit()
+                flash('User added successfully!');
+                return redirect("./usuario/usuario.html")
+    except:
+        flash('Error al registrar el usuario')
+        return redirect(url_for('usuario'))
 
 #edit
 @routes.route('/edit_user/<string:id>', methods = ['POST', 'GET'])
