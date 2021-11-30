@@ -3,6 +3,7 @@ from flask_mysqldb import MySQL
 from rutas import routes
 import os
 
+
 app = Flask(__name__)
 
 #Conexión a BD con archivo .env

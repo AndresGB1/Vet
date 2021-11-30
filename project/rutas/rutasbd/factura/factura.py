@@ -2,9 +2,9 @@ from flask import render_template, redirect,url_for,request, flash
 from __init__ import *
 
 
-#Añadiendo id_historia id_pago fecha descuento total estado
-@routes.route('/admin/<id>/mascota/add_color', methods=['POST'])
-def add_mascota():
+#Añadiendo una factura (id_historia id_pago fecha descuento total estado)
+@routes.route('/historia/add_factura', methods=['POST'])
+def add_factura(id_h):
     try:
         if request.method == 'POST':
             id_historia = request.form['id_historia']
@@ -24,38 +24,3 @@ def add_mascota():
         print("No funciono ",e)
         return redirect('/')
        
-
-#edit
-@routes.route('/admin/<id>/mascota/set_color/<id>', methods = ['POST', 'GET'])
-def get_contact(id):
-    cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM usuario WHERE id = %s', (id))
-    data = cur.fetchall()
-    cur.close()
-    return render_template('edit-user.html', contact = data[0])
-
-#edit
-@routes.route('/user/update/<id>', methods=['POST'])
-def update_user(id):
-    if request.method == 'POST':
-        numeroDoc = request.form['numeroDoc']
-        nombres = request.form['nombres']
-        apellidos = request.form['appellidos']
-        fecha_nacimiento = request.form['fecha_nacimiento']
-        password = request.form['password']
-        sexo = request.form['sexo']
-        direccion = request.form['direccion']
-        correo = request.form['correo']
-        estado = True;
-        cur = mysql.connection.cursor()
-        cur.execute("""
-            UPDATE contacts
-            SET numeroDoc = %s,
-                nombres = %s,
-                apellidos = %s
-                
-            WHERE id = %s
-        """)
-        flash('Contact Updated Successfully')
-        mysql.connection.commit()
-        return redirect(url_for('Index'))

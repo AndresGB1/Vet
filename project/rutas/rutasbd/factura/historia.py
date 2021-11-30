@@ -3,14 +3,14 @@ from __init__ import *
 
 
 #Añadiendo id_usuario id_raza estado id_color nombre sexo peso fechaNacimiento
-@routes.route('/admin/<id>/mascota/add_color', methods=['POST'])
-def add_mascota():
+@routes.route('/mascota/<id>/add_historia', methods=['POST'])
+def add_mascota(id):
     try:
         if request.method == 'POST':
             nombre = request.form['nombre']
             estado = True
             cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO color (nombre, estado) VALUES(%s, %s)", (nombre, estado))
+            cur.execute("INSERT INTO color (id_mascota,nombre, estado) VALUES(%s, %s)", (id,nombre, estado))
             mysql.connection.commit()
             flash('Nombre agregado correctamente')
             print("Agregado prros :D ")

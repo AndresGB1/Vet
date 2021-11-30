@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+body{
+    font-family: 'Poppins', sans-serif !important;
+    background-image: url(/img/Ellipse\ 22.png);
+    background-repeat: no-repeat;
+
+}
+
+.buttonWhite {
+    text-align: center;
+    background-color: white !important;
+    border: none !important;
+    width: 150px;
+    height: 50px;
+    margin: auto;
+    color: black !important;
+    border-radius: 15px;
+}
+
+.buttonOrange {
+    text-align: center;
+    background-color: #FB5813 !important;
+    border: none !important;
+    width: 150px;
+    height: 50px;
+    margin: auto;
+    color: #E5E5E5 !important;
+    border-radius: 15px;
+}
+
+.logo-O {
+    margin-right: 100%;
+    margin-left: -20%;
+}
+
+.tablaOfficial {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 28px -5px rgba(0,0,0,0.36); 
+     box-shadow: 0px 0px 28px -5px rgba(0,0,0,0.36);
+}

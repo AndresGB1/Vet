@@ -1,8 +1,12 @@
 from flask import Flask, render_template, redirect,url_for,request, flash
-from __init__ import *
-
+from .. import mysql
+from .. import routes
 
 #CRUD
+@routes.route('/usuario')
+def usuario():
+    return render_template('./usuario/usuario.html')
+
 #Create
 @routes.route('/add_user', methods=['POST'])
 def add_user():
@@ -24,7 +28,7 @@ def add_user():
         return redirect(url_for('Index'))
 
 #edit
-@routes.route('/edit_user/<id>', methods = ['POST', 'GET'])
+@routes.route('/edit_user/<string:id>', methods = ['POST', 'GET'])
 def get_contact(id):
     cur = mysql.connection.cursor()
     cur.execute('SELECT * FROM usuario WHERE id = %s', (id))
@@ -33,7 +37,7 @@ def get_contact(id):
     return render_template('edit-user.html', contact = data[0])
 
 #edit
-@routes.route('/user/update/<id>', methods=['POST'])
+@routes.route('/user/update/<string:id>', methods=['POST'])
 def update_user(id):
     if request.method == 'POST':
         numeroDoc = request.form['numeroDoc']

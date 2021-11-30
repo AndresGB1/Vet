@@ -3,7 +3,7 @@ from __init__ import *
 
 
 #Añadiendo el tipo de pago a la base de datos
-@routes.route('/add_tipo_pago', methods=['POST'])
+@routes.route('/add_forma_pago', methods=['POST'])
 def add_mascota():
     try:
         if request.method == 'POST':
