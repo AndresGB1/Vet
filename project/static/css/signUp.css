@@ -23,7 +23,7 @@ body {
     border: none !important;
     width: 150px;
     height: 50px;
-    margin: auto;
+    margin-top: 50px;
     color: #E5E5E5 !important;
     border-radius: 15px;
 }
@@ -38,7 +38,7 @@ body {
 
     margin: auto;
     width: 380px;
-    height: 540px;
+    height: 900px;
     padding: 30px;
     text-align: left;
     background: #FFFFFF;

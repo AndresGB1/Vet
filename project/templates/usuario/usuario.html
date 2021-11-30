@@ -1,22 +1,114 @@
-<form action="/add_user">
-  <input type="text" name="username" placeholder="username" />
-  <input type="text" name="numeroDocumento" placeholder="numeroDocumento" />
-  <input type="text" name="nombres" placeholder="nombres" />
-  <input type="text" name="apellidos" placeholder="apellidos" />
-  <input type="text" name="fecha_nacimiento" placeholder="fecha_nacimiento" />
-  <input type="text" name="password" placeholder="password" />
-  <input type="text" name="sexo" placeholder="sexo" />
-  <input type="text" name="direccion" placeholder="direccion" />
-  <input type="text" name="correo" placeholder="correo" />
-  <input type="password" name="password" placeholder="password" />
-  <select name="tipoDocumento">
-    {% for tipo_documento in tipos %}
-    <option value="{{tipo_documento.0}}">{{tipo_documento.1}}</option>
-    {% endfor %}
-  </select>
-  <select name="tipoRol">
-    {% for rol in roles %}
-    <option value="{{rol.0}}">{{rol.1}}</option>
-    {% endfor %}
-  </select>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='/css/signUp.css')}}">
+    <link rel="icon" href="{{ url_for('static',filename='/img/Logo2.png')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>FourPawsCitiziens | Registro</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light navbar-color">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('static',filename='/index.html')}}"><img src="/img/logonav.png')}}" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="d-flex align-items-center">
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav d-flex align-items-center">
+
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link" href="/#whoWeAre">¿Quienes somos?</a>
+                    <a class="nav-link" href="/#purpose">Proposito</a>
+
+                </div>
+            </div>
+        </div>
+      </div>
+  </nav>
+  <div class="signUpform">
+
+    <div class="container ">
+        <div class="row">
+            <div class="col-9">
+                <img src="{{ url_for('static',filename='/img/signUpogo.png')}}" alt="logo">
+            </div>
+            <div class="col-3">
+                <p>Vet Cobos</p>
+            </div>
+
+            <div class="row">
+                <div class="col-12" style="text-align: center;">
+                    <img src="{{ url_for('static',filename='/img/logoPets.png')}}" alt="">
+                </div>
+            </div>
+
+        </div>
+        <form action="/add_user">
+          <div class="col-md-12">
+            <label for="validationServer01"  class="UserName"  style="text-align: right!important;">UserName</label>
+            <input type="text" class="form-control  name="username" placeholder="username" />
+          </div>
+          <div class="col-md-12">
+            <label for="validationServer01"  class="numeroDocumento" style="text-align: right!important;">numero de Documento</label>
+            <input type="text" class="form-control name="numeroDocumento" placeholder="numeroDocumento" />
+          </div>
+          <div class="col-md-12">
+            <label for="validationServer01"  class="Nombre" style="text-align: right!important;">Nombre</label>
+            <input type="text" class="form-control name="nombres" placeholder="nombres" />
+          </div>
+          <div class="col-md-12">
+            <label for="validationServer01"  class="Apellido" style="text-align: right!important;">Apellido</label>
+            <input type="text" class="form-control name="apellidos" placeholder="apellidos" />
+          </div>
+          <div class="col-md-12">
+            <label for="validationServer01"  class="fecha_nacimiento" style="text-align: right!important;">Fecha de nacimiento</label>
+            <input type="text" class="form-control name="fecha_nacimiento" placeholder="fecha_nacimiento" />
+          </div>
+          <div class="col-md-12">
+            <label for="validationServer01 "class="Password" style="text-align: right!important;">Password</label>
+            <input type="text" class="form-control name="password" placeholder="password" />
+          </div>
+          <div class="col-md-12">
+            <label for="validationServer01" class="Sexo" style="text-align: right!important;">Sexo</label>
+            <input type="text" class="form-control name="sexo" placeholder="sexo" />
+          </div>
+          <div class="col-md-12">
+            <label for="validationServer01"  class="direccion" style="text-align: right!important;">Direccion</label>
+            <input type="text" class="form-control name="direccion" placeholder="direccion" />
+          </div>
+          <div class="col-md-12">
+            <label for="validationServer01"  class="email" style="text-align: right!important;">Email</label>
+          <input type="text" class="form-control name="correo" placeholder="correo" />
+          </div>
+          <label for="validationServer01"  class="email" style="text-align: right!important;">Tipo de documento</label>
+          <select name="tipoDocumento">
+            {% for tipo_documento in tipos %}
+            <option value="{{tipo_documento.0}}">{{tipo_documento.1}}</option>
+            {% endfor %}
+          </select>
+          <select name="tipoRol">
+            {% for rol in roles %}
+            <option value="{{rol.0}}">{{rol.1}}</option>
+            {% endfor %}
+          </select>
+          <div class="col-12">
+            <button  type="submit" class="buttonOrange" id="buttonN">siguente</button>
+          </div>
+        </form>
+    </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"> </script>
+</body>
+
+</html>

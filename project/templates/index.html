@@ -19,7 +19,7 @@
 
     <!-- formulario login  -->
     <div class="formulario-login">
-        <form action="" id="loginForm">
+        <form action="/login" method= "GET" id="loginForm">
             <div class="botones">
                 <img src="{{ url_for('static',filename='/img/Logo2.png')}}" alt="logo2">
             </div>
@@ -35,7 +35,7 @@
             <div class="botones">
                 <button type="submit" id="login_btn"class="btn btn-primary">Login</button>
                 <br>
-                <a style="text-decoration: none;" href="/usuario">
+                <a style="text-decoration: none;" href="/registrar">
                     <p style="font-size: 15px;">Crear cuenta</p>
                 </a>
             </div>
