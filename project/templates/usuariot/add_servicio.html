@@ -1,55 +1,44 @@
+
+{% extends "layout.html" %}
+{% block body %}
 <!--Agregando un servicio-->
-<!--id id_tipo nombre descripcion costo iva estado -->
+<!--nombre descripcion costo iva estado -->
 <section class="container">
     <div class="columns is-multiline">
       <div class="column is-8 is-offset-2 register">
         <div class="columns">
           <div class="column right has-text-centered">
-            <h1 class="title is-4">Añadir Mascota</h1>
-            <form action="/vista_cliente/{{username}}/add_mascota" method="POST">
+            <h1 class="title is-4">Añadir Servicio</h1>
+            <form action="/vista_cliente/{{username}}/add_servicio" method="POST">
               <div class="field">
                 <div class="control">
                   <input type="text" name="nombre" placeholder="Nombre" />
                 </div>
               </div>
-              <div class="field">
-                <div class="control">
-                  <input type="text" name="sexo" placeholder="sexo" />
+            </br>
+                <div class="field">
+                    <div class="control">
+                    <input type="text" name="descripcion" placeholder="Descripcion" />
+                    </div>
                 </div>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <input type="text" name="peso" placeholder="peso" />
+            </br>
+                <div class="field">
+                    <div class="control">
+                    <input type="text" name="costo" placeholder="Costo" />
+                    </div>
                 </div>
-              </div>
+            </br>
+                <div class="field">
+                    <div class="control">
+                    <input type="text" name="iva" placeholder="Iva" />
+                    </div>
+                </br>
               <div class="field">
                 <div class="control">
-                  <input type="text" name="estado" placeholder="estado" />
-                </div>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <select name="especie" onchange="myFunction(this.value)">
-                    {% for especie in especies %}
-                    <option value="{{especie.0}}">{{especie.1}}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <select name="color">
-                    {% for color in colores %}
-                    <option value="{{color.0}}">{{color.1}}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <select name="raza">
-                    {% for raza in razas %}
-                    <option value="{{raza.0}}">{{raza.1}}</option>
+                <label for="" class="form-label">Tipo de servicio</label>
+                  <select name="tipo">
+                    {% for tipo in tipos %}
+                        <option value="{{tipo.0}}">{{tipo.1}}</option>
                     {% endfor %}
                   </select>
                 </div>
@@ -62,3 +51,4 @@
       </div>
     </div>
   </section>
+{% endblock %}

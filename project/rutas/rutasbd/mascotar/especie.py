@@ -29,6 +29,7 @@ def get_especies():
     especies = cur.fetchall()
     cur.close()
     return especies
+
 #get_especies_id
 @routes.route('/get_especies_id/<id>', methods=['GET'])
 def get_especies_id(id):

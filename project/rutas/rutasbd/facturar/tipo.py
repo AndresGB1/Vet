@@ -28,6 +28,7 @@ def get_tipos():
         cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM tipo")
         tipos = cur.fetchall()
+        print("Tipos de servicio: ", tipos)
         return tipos
     except Exception as e:
         print("No funciono ",e)

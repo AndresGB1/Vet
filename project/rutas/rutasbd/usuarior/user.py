@@ -17,10 +17,11 @@ def vista_cliente(username):
 
 @routes.route('/vista_admin/<string:username>')
 def vista_admin(username):
-    return render_template('./usuariot/admin.html', username = username)
-@routes.route('/vista_veterinario')
-def vista_veterinario():
-    return render_template('./usuariot/veterinario.html')
+    return render_template('./usuariot/admin.html', name = username)
+    
+@routes.route('/vista_veterinario/<string:username>')
+def vista_veterinario(username):
+    return render_template('./usuariot/veterinario.html', name = username)
 
 @routes.route('/registrar_usuario', methods=['POST'])
 def registrar_usuario():

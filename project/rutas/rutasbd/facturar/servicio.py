@@ -1,11 +1,12 @@
 from flask import render_template, redirect,url_for,request, flash
 from .. import mysql
 from .. import routes
+from .tipo import *
 
 
 #Añadiendo id_tipo nombre descripcion costo iva estado
-@routes.route('/add_servicio', methods=['POST'])
-def add_servicio(id):
+@routes.route('/vista_admin/<string:username>/add_servicio', methods=['POST','GET'])
+def add_servicio(username):
     try:
         if request.method == 'POST':
             id_tipo = request.form['id_tipo']
@@ -15,19 +16,21 @@ def add_servicio(id):
             iva = request.form['iva']
             estado = True
             cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO servicio (id_tipo,nombre,descripcion,costo,iva,estado) VALUES(%s,%s,%s,%s,%s,%s)",(id,nombre,descripcion,costo,iva,estado))
+            cur.execute("INSERT INTO servicio (id_tipo,nombre,descripcion,costo,iva,estado) VALUES(%s,%s,%s,%s,%s,%s)",(id_tipo,nombre,descripcion,costo,iva,estado))
             mysql.connection.commit()
             flash('Servicio agregado con exito','success')
             print("Agregado prros :D ")
             return redirect('/')
+        else:
+            return render_template('/usuariot/add_servicio.html',username=username, tipos = get_tipos())
     except Exception as e:
         flash('Error al agregar el servicio','danger')
         print("No funciono ",e)
         return redirect('/')
        
 #get_servicios
-@routes.route('/get_servicios', methods=['GET'])
-def get_servicios():
+@routes.route('/vista_admin/<string:username>/get_servicios', methods=['GET'])
+def get_servicios(username):
     try:
         cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM servicio")
@@ -38,8 +41,8 @@ def get_servicios():
         print("No funciono ",e)
         return redirect('/')
 #get_servicio_id
-@routes.route('/get_servicio_id/<id>', methods=['GET'])
-def get_servicio_id(id):
+@routes.route('/vista_admin/<string:username>/get_servicio_id/<id>', methods=['GET'])
+def get_servicio_id(username,id):
     try:
         cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM servicio WHERE id=%s",(id))
