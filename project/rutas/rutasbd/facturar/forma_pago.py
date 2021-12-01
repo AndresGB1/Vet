@@ -1,5 +1,6 @@
 from flask import render_template, redirect,url_for,request, flash
-from __init__ import *
+from .. import mysql
+from .. import routes
 
 
 #Añadiendo el tipo de pago a la base de datos
@@ -19,4 +20,27 @@ def add_forma_pago():
         flash('Error al agregar el Nombre')
         print("No funciono ",e)
         return redirect('/')
-    
+#get_formas_pago
+@routes.route('/get_formas_pago', methods=['GET'])
+def get_formas_pago():
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM formapago")
+        formas_pago = cur.fetchall()
+        cur.close()
+        return formas_pago
+    except Exception as e:
+        print("No funciono ",e)
+        return redirect('/')
+#get_formas_pago_id
+@routes.route('/get_formas_pago_id/<id>', methods=['GET'])
+def get_formas_pago_id(id):
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM formapago WHERE id=%s", (id))
+        formas_pago = cur.fetchall()
+        cur.close()
+        return formas_pago
+    except Exception as e:
+        print("No funciono ",e)
+        return redirect('/')

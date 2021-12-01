@@ -28,6 +28,30 @@
               <button type="submit">Save</button>
               <br />
             </form>
+            <br/>
+            <h1 class="title is-4">Ir a Historia</h1>
+
+
+            <form action="/vista_veterinario/{{name}}/get_historia/" method="GET">
+            </br>
+                <div class="field">
+                    <div class="control">
+                    <input type="text" name="id_mascota" placeholder="id_mascota" />
+                    </div>
+                </div>
+            </br>
+            <div class="field">
+                <div class="control">
+                    <div class="col-md-12">
+                        <label for="validationServer01" style="text-align: right!important;">Fecha de creación de la historia</label>
+                        <input class="form-control" name = "fecha_historia" required type="date" placeholder="date">
+                    </div>
+                </div>
+            </div>
+        </br>
+              <button type="submit">Ir</button>
+              <br />
+            </form>
           </div>
         </div>
       </div>

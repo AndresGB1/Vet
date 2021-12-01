@@ -1,5 +1,6 @@
 from flask import render_template, redirect,url_for,request, flash
-from __init__ import *
+from .. import routes
+from .. import mysql
 
 
 #Añadiendo una factura (id_historia id_pago fecha descuento total estado)

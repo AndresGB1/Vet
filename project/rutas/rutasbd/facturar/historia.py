@@ -25,3 +25,31 @@ def add_historia(username):
             return redirect('/vista_veterinario/'+username+'/nueva_historia')
     except:
         return redirect('/vista_veterinario/'+username+'/nueva_historia')
+#get_historias
+@routes.route('/vista_veterinario/<string:username>/get_historia', methods=['GET'])
+def get_historia(username):
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM historia WHERE estado = 1")
+        historias = cur.fetchall()
+        cur.close()
+        flash('Historias cargadas exitosamente!')
+        return historias
+    except:
+        flash('Error al obtener historias!')
+        return redirect('/vista_veterinario/'+username+'/nueva_historia')
+
+#get_historias_id
+@routes.route('/vista_veterinario/<string:username>/get_historia_id/<string:id_historia>', methods=['GET'])
+def get_historia_id(username,id_historia):
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM historia WHERE id_historia = %s", (id_historia))
+        historia = cur.fetchall()
+        cur.close()
+        flash('Historia cargada exitosamente!')
+        return historia
+    except:
+        flash('Error al obtener historia!')
+        return redirect('/vista_veterinario/'+username+'/nueva_historia')
+
