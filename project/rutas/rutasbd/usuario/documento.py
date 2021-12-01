@@ -13,6 +13,7 @@ def add_documento():
             cur = mysql.connection.cursor()
             cur.execute("INSERT INTO documento(tipo, estado) VALUES(%s, %s)", (tipo, estado))
             mysql.connection.commit()
+            cur.close()
             flash('Documento agregado correctamente')
             return redirect(url_for('Index'))
         except:
@@ -25,5 +26,6 @@ def get_tipo_documento():
     cur.execute("SELECT * FROM documento")
     data = cur.fetchall()
     mysql.connection.commit()
+    cur.close()
     print(data)
     return data

@@ -1,66 +1,101 @@
 from flask import Flask, render_template, redirect,url_for,request, flash
-from .. import mysql
 from .. import routes
+from .. import mysql
 from .rol import *
 from .documento import *
-import bcrypt 
+from ..mascota.mascota import *
+import hashlib
 
 #CRUD
 @routes.route('/registrar')
 def usuario():
-    return render_template('./usuario/usuario.html',roles = get_rol(), tdocumentos = get_tipo_documento())
-    
+    return render_template('./usuario/usuario.html',roles = [[2,"Cliente",1]], tdocumentos = get_tipo_documento())
+
+@routes.route('/vista_cliente/<string:username>')
+def vista_cliente(username):
+    return render_template('./usuario/mascotas.html', username = username, mascotas = get_mascotas(username))
+
+@routes.route('/vista_admin/<string:username>')
+def vista_admin(username):
+    return render_template('./usuario/admin.html', username = username)
+@routes.route('/vista_veterinario')
+def vista_veterinario():
+    return render_template('./usuario/veterinario.html')
+
 @routes.route('/registrar_usuario', methods=['POST'])
 def registrar_usuario():
-    if request.method == 'POST':
-        print("Entro")
-        add_user(2)
+   if(request.method == 'POST'):
+            username = request.form['username']
+            data = get_user(username)
+            if(len(data) == 0 ):
+                numeroDoc = request.form['numeroDoc']
+                numeroDoc = str(numeroDoc)
+                nombres = request.form['nombres']
+                apellidos = request.form['apellidos']
+                fecha_nacimiento = request.form['date']
+                password = request.form['password']
+                password = hashlib.sha1(password.encode('utf-8')).hexdigest()
+                sexo = request.form['sexo']
+                direccion = request.form['direccion']
+                correo = request.form['correo']
+                id_documento = request.form['tipo_documento']
+                id_rol = request.form['id_rol']
+                estado = True;
+                cur = mysql.connection.cursor()
+                cur .execute("INSERT INTO usuario (username,id_rol,id_documento, numeroDoc, nombres, apellidos, fecha_nacimiento,pasword,sexo,direccion,correo,estado) VALUES(%s,%s,%s ,%s,%s, %s,%s, %s,%s, %s,%s, %s)", (username, id_rol,id_documento,numeroDoc, nombres, apellidos, fecha_nacimiento,password,sexo,direccion,correo,estado))  
+                mysql.connection.commit()
+                flash('User added successfully!')
+                return redirect('/vista_cliente')
+            else:
+                return redirect('/registrar')
+                #return render_template('./usuario/usuario.html',roles = [[2,"Cliente",1]], tdocumentos = get_tipo_documento())
 
 @routes.route('/registrar_admin')
 def usuarioAdmin():
     return render_template('./usuario/usuario.html',roles = get_rol())
 
-@routes.route('/login', methods=['GET'])
+@routes.route('/login', methods=['POST'])
 def login():
     try:
-        if request.method == 'GET':
+        if request.method == 'POST':
             username = request.form['username']
             password = request.form['password']
-            hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-            cur = mysql.connection.cursor()
-            cur.execute("SELECT * FROM usuario WHERE username = %s", (username))
-            user = cur.fetchone()
-            print(user)
-            if user is None:
+            hashed = hashlib.sha1(password.encode('utf-8')).hexdigest()
+            data = get_user(username)
+            print(data)
+            print(len(data))
+            if(len(data) == 0 ):
+                print("No existe el usuario")
                 flash('Usuario no existe')
                 return redirect('/')
-            else:
-                if user.password == hashed:
-                    if user.rol == 'cliente':
-                        return redirect("./usuario/cliente")
-                    if user.rol == 'veterinario':
-                        return redirect("./usuario/veterinario")
-                    if user.rol == 'admin':
-                        return redirect("./usuario/admin")
-
-            
-
+            else:                
+                if data[0][7] == hashed:
+                    flash('Logueado exitosamente')
+                    if data[0][1] == 2:
+                        return redirect("./vista_cliente/"+username)
+                    if data[0][1] == 3:
+                        return redirect("./vista_veterinario")
+                    if data[0][1] == 1:
+                        return redirect("./vista_admin")
+            flash('Contraseña incorrecta')
+            return redirect('/')
+        else:
+            return redirect('/')
             
     except:
-        return redirect(url_for('rutas.login'))
+        return redirect('/')
 
-@routes.route('/user/<string:id>', methods = ['GET'])
-def get_user(id):
+@routes.route('/user/<string:username>')
+def get_user(username):
     try:
         cur = mysql.connection.cursor()
-        cur.execute('SELECT * FROM usuario WHERE username = %s', (id))
+        cur.execute('SELECT * FROM usuario WHERE username =  "{0}"'.format(username))
         data = cur.fetchall()
         cur.close()
-        flash('Usuario encontrado')
-        return render_template('./usuario/usuario.html',usuario=data[0])
-    except:
-        flash('Error al recuperar el usuario')
-        return redirect(url_for('usuario'))
+        print(data)
+        return data
+    except Exception as e:
+        return []        
 
 #Create
 @routes.route('/add_user', methods=['POST'])

@@ -1,7 +1,7 @@
 from flask import  render_template, redirect,url_for,request, flash
 from flask import Blueprint
-from .. import mysql
 from .. import routes
+from .. import mysql
 
 
 
@@ -31,6 +31,7 @@ def get_rol():
         cur.execute("SELECT * FROM rol")
         data = cur.fetchall()
         mysql.connection.commit()
+        cur.close()
         return data
     except:
         flash('Error al obtener los roles')

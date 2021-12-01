@@ -1,0 +1,17 @@
+{% extends "/usuario/cliente.html" %}
+{% block table %}
+<!-- Añadir mascota -->
+<!-- i	id_raza	id_usuario	id_color	nombre	sexo	peso	fecha_nacimiento	estado	Eliminar -->
+<form action="/add_tipo_documento" method="POST">
+    <input type="text" name="nombre" placeholder="Nombre" />
+    <input type="text" name="sexo" placeholder="sexo"/>
+    <input type="text" name="peso" placeholder="peso"/>
+    <input type="text" name="fecha_nacimiento" placeholder="fecha_nacimiento"/>
+    <input type="text" name="estado" placeholder="estado"/>
+    <input type="submit" value="Añadir" />
+
+    <button type="submit">Save</button>
+</form>
+
+
+{% endblock %}
