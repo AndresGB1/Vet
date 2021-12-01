@@ -6,30 +6,30 @@ from .raza import *
 
 
        
+@routes.route('/vista_cliente/<string:username>/nueva_mascota', methods=['GET'])
+def nueva_mascota(username):
+    return render_template('usuariot/add_mascotas.html', name=username, colores = get_colores(), especies=get_especies(), razas=get_all_razas())
 
-
-@routes.route('/vista_cliente/<string:username>/add_mascota', methods=['GET'])
-def add_mascotau(username):
-    if request.method == 'GET':
-        return render_template('usuariot/add_mascotas.html', name=username, colores = get_colores(), especies=get_especies(), razas=get_all_razas())
+@routes.route('/vista_cliente/<string:username>/add_mascota', methods=['POST'])
+def add_mascotau(username): 
     if request.method == 'POST':
         try:
-            id_usuario = username
-            id_raza = request.form['id_raza']
-            id_color = request.form['id_color']
+            id_usuario = request.form['user_name']
             nombre = request.form['nombre']
             sexo = request.form['sexo']
             peso = request.form['peso']
-            fechaNacimiento = request.form['fechaNacimiento']
-            estado = True;
+            fechaNacimiento = request.form['fecha_nacimiento']
+            id_raza = request.form['id_raza']
+            id_color = request.form['id_color']
+            estado = True
             cur = mysql.connection.cursor()
-            cur .execute("INSERT INTO mascota (id_usuario, id_raza, id_color, nombre, sexo, peso, fechaNacimiento, estado) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (id_usuario, id_raza, id_color, nombre, sexo, peso, fechaNacimiento, estado))
+            cur .execute("INSERT INTO mascota (id_usuario, id_raza, id_color, nombre, sexo, peso, fecha_nacimiento, estado) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (id_usuario, id_raza, id_color, nombre, sexo, peso, fechaNacimiento, estado))
             mysql.connection.commit()
             flash('Mascota added successfully!')
-            return redirect('') 
+            return redirect('/vista_cliente/'+username+'/nueva_mascota') 
         except Exception as e:
             print('Error: ' + str(e))
-            return redirect('/vista_cliente/<string:username>/add_mascota')
+            return redirect('/vista_cliente/'+username+'/nueva_mascota')
 
 @routes.route('/vista_cliente/<string:username>/ver_mascotas', methods=['GET'])
 def ver_mascotau(username):
