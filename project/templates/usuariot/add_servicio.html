@@ -3,52 +3,90 @@
 {% block body %}
 <!--Agregando un servicio-->
 <!--nombre descripcion costo iva estado -->
-<section class="container">
-    <div class="columns is-multiline">
-      <div class="column is-8 is-offset-2 register">
-        <div class="columns">
-          <div class="column right has-text-centered">
-            <h1 class="title is-4">Añadir Servicio</h1>
-            <form action="/vista_cliente/{{username}}/add_servicio" method="POST">
-              <div class="field">
-                <div class="control">
-                  <input type="text" name="nombre" placeholder="Nombre" />
-                </div>
-              </div>
-            </br>
-                <div class="field">
+<div class="container">
+<div class="col-md-6">
+    <section class="container">
+        <div class="columns is-multiline">
+          <div class="column is-6 is-offset-2 register">
+            <div class="columns">
+              <div class="column right has-text-centered">
+                <h1 class="title is-4">Añadir Servicio</h1>
+                <form action="/vista_admin/{{username}}/add_servicio" method="POST">
+                  <div class="field">
                     <div class="control">
-                    <input type="text" name="descripcion" placeholder="Descripcion" />
+                      <input type="text" name="nombre" placeholder="Nombre" />
                     </div>
-                </div>
-            </br>
-                <div class="field">
-                    <div class="control">
-                    <input type="text" name="costo" placeholder="Costo" />
-                    </div>
-                </div>
-            </br>
-                <div class="field">
-                    <div class="control">
-                    <input type="text" name="iva" placeholder="Iva" />
+                  </div>
+                </br>
+                    <div class="field">
+                        <div class="control">
+                        <input type="text" name="descripcion" placeholder="Descripcion" />
+                        </div>
                     </div>
                 </br>
-              <div class="field">
-                <div class="control">
-                <label for="" class="form-label">Tipo de servicio</label>
-                  <select name="tipo">
-                    {% for tipo in tipos %}
-                        <option value="{{tipo.0}}">{{tipo.1}}</option>
-                    {% endfor %}
-                  </select>
-                </div>
+                    <div class="field">
+                        <div class="control">
+                        <input type="text" name="costo" placeholder="Costo" />
+                        </div>
+                    </div>
+                </br>
+                    <div class="field">
+                        <div class="control">
+                        <input type="text" name="iva" placeholder="Iva" />
+                        </div>
+                    </br>
+                  <div class="field">
+                    <div class="control">
+                    <label for="" class="form-label">Tipo de servicio</label>
+                      <select name="id_tipo">
+                        {% for tipo in tipos %}
+                            <option value="{{tipo.0}}">{{tipo.1}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                  <button type="submit">Save</button>
+                  <br />
+                </form>
               </div>
-              <button type="submit">Save</button>
-              <br />
-            </form>
+            </div>
           </div>
+         
         </div>
-      </div>
-    </div>
-  </section>
+       
+        
+      </section>
+</div>
+
+  <div class col-md-4>
+    <!--Viendo en una tabla los servicios-->
+    <!--id_tipo,nombre,descripcion,costo,iva,estado-->
+    <table>
+        <thead>
+            <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Costo</th>
+            <th>Iva</th>
+            <th>Estado</th>
+            <th>Tipo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for servicio in servicios %}
+            <tr>
+                <td>{{servicio.0}}</td>
+                <td>{{servicio.1}}</td>
+                <td>{{servicio.2}}</td>
+                <td>{{servicio.3}}</td>
+                <td>{{servicio.4}}</td>
+                <td>{{servicio.5}}</td>
+                <td>{{servicio.6}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  </div>
+</div>
 {% endblock %}

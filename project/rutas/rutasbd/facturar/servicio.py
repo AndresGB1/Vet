@@ -4,33 +4,35 @@ from .. import routes
 from .tipo import *
 
 
+@routes.route('/vista_admin/<string:username>/nuevo_servicio', methods=['GET'])
+def nuevo_servicio(username):
+    return render_template('/usuariot/add_servicio.html',username=username, tipos = get_tipos(), servicios = get_servicios())
 #Añadiendo id_tipo nombre descripcion costo iva estado
-@routes.route('/vista_admin/<string:username>/add_servicio', methods=['POST','GET'])
+@routes.route('/vista_admin/<string:username>/add_servicio', methods=['POST'])
 def add_servicio(username):
     try:
         if request.method == 'POST':
             id_tipo = request.form['id_tipo']
             nombre = request.form['nombre']
             descripcion = request.form['descripcion']
-            costo = request.form['costo']
-            iva = request.form['iva']
+            costo = int(request.form['costo'])
+            iva = int(request.form['iva'])
             estado = True
             cur = mysql.connection.cursor()
             cur.execute("INSERT INTO servicio (id_tipo,nombre,descripcion,costo,iva,estado) VALUES(%s,%s,%s,%s,%s,%s)",(id_tipo,nombre,descripcion,costo,iva,estado))
             mysql.connection.commit()
+            cur.close()
             flash('Servicio agregado con exito','success')
             print("Agregado prros :D ")
-            return redirect('/')
-        else:
-            return render_template('/usuariot/add_servicio.html',username=username, tipos = get_tipos())
+            return redirect('/vista_admin/'+username+'/nuevo_servicio')
     except Exception as e:
         flash('Error al agregar el servicio','danger')
         print("No funciono ",e)
-        return redirect('/')
+        return redirect('/vista_admin/'+username+'/nuevo_servicio')
        
 #get_servicios
 @routes.route('/vista_admin/<string:username>/get_servicios', methods=['GET'])
-def get_servicios(username):
+def get_servicios():
     try:
         cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM servicio")
