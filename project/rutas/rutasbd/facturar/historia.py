@@ -1,5 +1,6 @@
 from flask import render_template, redirect,url_for,request, flash
-from __init__ import *
+from .. import mysql
+from .. import routes
 
 
 #Añadiendo id_usuario id_raza estado id_color nombre sexo peso fechaNacimiento

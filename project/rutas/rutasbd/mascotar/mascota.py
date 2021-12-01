@@ -11,7 +11,7 @@ from .raza import *
 @routes.route('/vista_cliente/<string:username>/add_mascota', methods=['GET'])
 def add_mascotau(username):
     if request.method == 'GET':
-        return render_template('usuariot/add_mascotas.html', name=username, colores = get_colores(), especies=get_especies())
+        return render_template('usuariot/add_mascotas.html', name=username, colores = get_colores(), especies=get_especies(), razas=get_all_razas())
     if request.method == 'POST':
         try:
             id_usuario = username

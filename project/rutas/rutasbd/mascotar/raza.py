@@ -20,6 +20,18 @@ def add_especie(id):
         flash('Error al agregar el Nombre')
         print("No funciono ",e)
         return redirect('/')
+
+#get_all_razas
+@routes.route('/get_razas', methods=['GET'])
+def get_all_razas():
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM raza")
+        razas = cur.fetchall()
+        return razas
+    except Exception as e:
+        print("No funciono ",e)
+        return redirect('/')
 #get_raza
 @routes.route('/especie/<id>/get_razas', methods=['GET'])
 def get_razas(id):
