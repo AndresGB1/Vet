@@ -74,7 +74,7 @@ def login():
                     if data[0][1] == 3:
                         return redirect("./vista_veterinario"+username)
                     if data[0][1] == 1:
-                        return redirect("./vista_admin"+username)
+                        return redirect("./vista_admin/"+username)
             flash('Contraseña incorrecta')
             return redirect('/')
         else:

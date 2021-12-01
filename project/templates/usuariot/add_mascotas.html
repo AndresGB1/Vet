@@ -1,39 +1,67 @@
-{% extends "/usuariot/cliente.html" %}
-{% block table %}
+{% extends "/usuariot/cliente.html" %} {% block table %}
 <!-- Añadir mascota -->
 <!-- i	id_raza	id_usuario	id_color	nombre	sexo	peso	fecha_nacimiento	estado	Eliminar -->
-<form action="/mascota/get_especie">
-    
-</form>
-<form action="/vista_cliente/{{username}}/add_mascota" method="POST">
-    <input type="text" name="nombre" placeholder="Nombre" />
-    <input type="text" name="sexo" placeholder="sexo"/>
-    <input type="text" name="peso" placeholder="peso"/>
-    <input type="text" name="fecha_nacimiento" placeholder="fecha_nacimiento"/>
-    <input type="text" name="estado" placeholder="estado"/>
-    <div>
-        <select name="especie">
-            {% for especie in especies %}
-            <option value="{{especie.0}}">{{especie.1}}</option>
-            {% endfor %}
-          </select>
+<section class="container">
+  <div class="columns is-multiline">
+    <div class="column is-8 is-offset-2 register">
+      <div class="columns">
+        <div class="column right has-text-centered">
+          <h1 class="title is-4">Añadir Mascota</h1>
+          <form action="/vista_cliente/{{username}}/add_mascota" method="POST">
+            <div class="field">
+              <div class="control">
+                <input type="text" name="nombre" placeholder="Nombre" />
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input type="text" name="sexo" placeholder="sexo" />
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input type="text" name="peso" placeholder="peso" />
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input type="text" name="estado" placeholder="estado" />
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <select name="especie" onchange="myFunction(this.value)">
+                  {% for especie in especies %}
+                  <option value="{{especie.0}}">{{especie.1}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <select name="color">
+                  {% for color in colores %}
+                  <option value="{{color.0}}">{{color.1}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <select name="raza">
+                  {% for raza in razas %}
+                  <option value="{{raza.0}}">{{raza.1}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <button type="submit">Save</button>
+            <br />
+          </form>
+        </div>
+      </div>
     </div>
-    <div>
-        <select name="color">
-            {% for color in colores %}
-            <option value="{{color.0}}">{{color.1}}</option>
-            {% endfor %}
-          </select>
-    </div>
-    <div>
-        <select name="raza">
-            {% for raza in razas %}
-            <option value="{{raza.0}}">{{raza.1}}</option>
-            {% endfor %}
-          </select>
-    </div>
-    <button type="submit">Save</button>
-</form>
-
+  </div>
+</section>
 
 {% endblock %}

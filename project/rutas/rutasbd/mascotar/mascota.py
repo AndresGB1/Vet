@@ -34,7 +34,7 @@ def add_mascotau(username):
 @routes.route('/vista_cliente/<string:username>/ver_mascotas', methods=['GET'])
 def ver_mascotau(username):
     if request.method == 'GET':
-        return render_template('usuariot/mascotas.html', name=username)
+        return render_template('usuariot/mascotas.html', name=username, mascotas=get_mascotas(username))
 
 
 #get
@@ -44,12 +44,23 @@ def get_mascotas(username):
     cur.execute("SELECT * FROM mascota WHERE id_usuario = %s", [username])
     data = cur.fetchall()
     cur.close()
-    return render_template('usuariot/mascotas.html', mascotas = data)
+    return data
 
 #get_by_id
-@routes.route('/user/<string:username>/get_mascota/<string:id>', methods=['GET'])
+@routes.route('/vista_cliente/<string:username>/get_mascota/<string:id>', methods=['GET'])
 def get_mascota(username, id):
+    if request.method == 'GET':
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT m.* FROM mascota m usuario u WHERE u.id_usuario = %s AND id_mascota = %s", (username, id))
+        data = cur.fetchall()
+        return render_template('mascota/mascota.html', mascotas = data)
+    
+
+#delete_by_id
+@routes.route('/vista_cliente/<string:username>/delete_mascota/<string:id>', methods=['GET', 'POST'])
+def delete_mascota(username, id):
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM mascota WHERE id_usuario = %s AND id_mascota = %s", (username, id))
-    data = cur.fetchall()
-    return render_template('mascota/mascota.html', mascotas = data)
+    cur.execute("update mascota SET estado = false WHERE id = %s", (id))
+    mysql.connection.commit()
+    cur.close()
+    return redirect('/vista_cliente/'+username+'/ver_mascotas')

@@ -1,3 +1,7 @@
-<p>
-    Vista de administrador
-</p>
+{% extends "layout.html" %}
+{% block body %}
+<form action='/vista_admin/{{name}}/add_servicio' method="POST">
+    <button style="width: 140px;"  type="submit"  >add servicio</button>
+</form>
+
+{% endblock %}
