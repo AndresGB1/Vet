@@ -1,5 +1,6 @@
 from flask import render_template, redirect,url_for,request, flash
-from __init__ import *
+from .. import mysql
+from .. import routes
 
 
 #Añadiendo tipo de especie en la base de datos
@@ -25,6 +26,14 @@ def add_mascota():
 def get_especies():
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM especie")
+    especies = cur.fetchall()
+    cur.close()
+    return especies
+#get_especies_id
+@routes.route('/get_especies_id/<id>', methods=['GET'])
+def get_especies_id(id):
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM especie WHERE id=%s", (id))
     especies = cur.fetchall()
     cur.close()
     return render_template('especie.html', especies=especies)

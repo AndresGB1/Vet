@@ -12,16 +12,23 @@
     <input type="text" name="fecha_nacimiento" placeholder="fecha_nacimiento"/>
     <input type="text" name="estado" placeholder="estado"/>
     <div>
-        <select name="tipo_documento">
-            {% for tipo_documento in tdocumentos %}
-            <option value="{{tipo_documento.0}}">{{tipo_documento.1}}</option>
+        <select name="especie">
+            {% for especie in especies %}
+            <option value="{{especie.0}}">{{especie.1}}</option>
             {% endfor %}
           </select>
     </div>
     <div>
-        <select name="tipo_documento">
-            {% for tipo_documento in tdocumentos %}
-            <option value="{{tipo_documento.0}}">{{tipo_documento.1}}</option>
+        <select name="color">
+            {% for color in colores %}
+            <option value="{{color.0}}">{{color.1}}</option>
+            {% endfor %}
+          </select>
+    </div>
+    <div>
+        <select name="raza">
+            {% for raza in razas %}
+            <option value="{{raza.0}}">{{raza.1}}</option>
             {% endfor %}
           </select>
     </div>
