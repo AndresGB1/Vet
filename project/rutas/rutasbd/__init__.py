@@ -4,6 +4,6 @@ from flask import Blueprint
 from .. import mysql
 from .. import routes
 
-from .usuario.rol import *
-from .usuario.user import *
-from .mascota.mascota import *
+from .usuarior.rol import *
+from .usuarior.user import *
+from .mascotar.mascota import *

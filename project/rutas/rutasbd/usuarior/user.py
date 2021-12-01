@@ -3,24 +3,24 @@ from .. import routes
 from .. import mysql
 from .rol import *
 from .documento import *
-from ..mascota.mascota import *
+from ..mascotar.mascota import *
 import hashlib
 
 #CRUD
 @routes.route('/registrar')
 def usuario():
-    return render_template('./usuario/usuario.html',roles = [[2,"Cliente",1]], tdocumentos = get_tipo_documento())
+    return render_template('/usuariot/usuario.html',roles = [[2,"Cliente",1]], tdocumentos = get_tipo_documento())
 
 @routes.route('/vista_cliente/<string:username>')
 def vista_cliente(username):
-    return render_template('./usuario/mascotas.html', username = username, mascotas = get_mascotas(username))
+    return render_template('/usuariot/cliente.html', name = username, mascotas = get_mascotas(username))
 
 @routes.route('/vista_admin/<string:username>')
 def vista_admin(username):
-    return render_template('./usuario/admin.html', username = username)
+    return render_template('./usuariot/admin.html', username = username)
 @routes.route('/vista_veterinario')
 def vista_veterinario():
-    return render_template('./usuario/veterinario.html')
+    return render_template('./usuariot/veterinario.html')
 
 @routes.route('/registrar_usuario', methods=['POST'])
 def registrar_usuario():
@@ -62,8 +62,6 @@ def login():
             password = request.form['password']
             hashed = hashlib.sha1(password.encode('utf-8')).hexdigest()
             data = get_user(username)
-            print(data)
-            print(len(data))
             if(len(data) == 0 ):
                 print("No existe el usuario")
                 flash('Usuario no existe')
@@ -74,9 +72,9 @@ def login():
                     if data[0][1] == 2:
                         return redirect("./vista_cliente/"+username)
                     if data[0][1] == 3:
-                        return redirect("./vista_veterinario")
+                        return redirect("./vista_veterinario"+username)
                     if data[0][1] == 1:
-                        return redirect("./vista_admin")
+                        return redirect("./vista_admin"+username)
             flash('Contraseña incorrecta')
             return redirect('/')
         else:
@@ -92,7 +90,6 @@ def get_user(username):
         cur.execute('SELECT * FROM usuario WHERE username =  "{0}"'.format(username))
         data = cur.fetchall()
         cur.close()
-        print(data)
         return data
     except Exception as e:
         return []        

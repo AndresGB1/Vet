@@ -1,10 +1,11 @@
 from flask import render_template, redirect,url_for,request, flash
-from __init__ import *
+from .. import mysql
+from .. import routes
 
 
 #Añadiendo una raza dentro de una especie en la base de datos
 @routes.route('/especie/<id>/add_raza', methods=['POST'])
-def add_mascota(id):
+def add_especie(id):
     try:
         if request.method == 'POST':
             raza = request.form['raza']
@@ -19,4 +20,11 @@ def add_mascota(id):
         flash('Error al agregar el Nombre')
         print("No funciono ",e)
         return redirect('/')
-       
+#get_raza
+@routes.route('/especie/<id>/get_razas', methods=['GET'])
+def get_razas(id):
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM raza WHERE id_especie = %s", [id])
+    razas = cur.fetchall()
+    cur.close()
+    return razas

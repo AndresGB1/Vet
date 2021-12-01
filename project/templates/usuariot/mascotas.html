@@ -1,0 +1,46 @@
+{% extends "/usuariot/cliente.html" %}
+{% block table %}
+<!--
+Añadiendo datos basicos de una mascota
+id
+id_raza
+id_usuario
+id_color
+nombre
+sexo
+peso
+fecha_nacimiento
+estado-->
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>raza</th>
+        <th>usuario</th>
+        <th>color</th>
+        <th>nombre</th>
+        <th>sexo</th>
+        <th>peso</th>
+        <th>fecha_nacimiento</th>
+        <th>estado</th>
+        <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for mascota in mascotas %}
+        <tr>
+          <td>{{mascota.1}}</td>
+          <td>{{mascota.2}}</td>
+          <td>{{mascota.3}}</td>
+          <td>{{mascota.4}}</td>
+          <td>{{mascota.5}}</td>
+          <td>{{mascota.6}}</td>
+          <td>{{mascota.7}}</td>
+          <td>{{mascota.8}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

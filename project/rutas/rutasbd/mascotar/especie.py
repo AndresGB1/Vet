@@ -20,4 +20,11 @@ def add_mascota():
         print("No funciono ",e)
         return redirect('/')
        
-
+#get_especies
+@routes.route('/get_especies', methods=['GET'])
+def get_especies():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM especie")
+    especies = cur.fetchall()
+    cur.close()
+    return render_template('especie.html', especies=especies)

@@ -1,10 +1,11 @@
 from flask import render_template, redirect,url_for,request, flash
-from __init__ import *
+from .. import routes
+from .. import mysql
 
 
 #Añadiendo id_usuario id_raza estado id_color nombre sexo peso fechaNacimiento
 @routes.route('/add_color', methods=['POST'])
-def add_mascota():
+def add_color():
     try:
         if request.method == 'POST':
             nombre = request.form['nombre']
