@@ -4,7 +4,7 @@ from .. import mysql
 
 
 #Añadiendo una factura (id_historia id_pago fecha descuento total estado)
-@routes.route('/historia/<id_h>/add_factura', methods=['POST'])
+@routes.route('user/<string:username>/get_historia/<id_h>/add_factura', methods=['POST'])
 def add_factura(id_h):
     try:
         if request.method == 'POST':

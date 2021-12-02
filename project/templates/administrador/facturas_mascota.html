@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
 {% block body %}
-<h1>
-    Aqui puedes ver las facturas de la mascota
-</h1>
+
 <!--Viendo las facturas
 id id_historia id_pago estado fecha descuento total-->
 
-<div >
+<div class="container">
+    <h1> Aqui puedes ver las facturas de la mascota</h1>
+</br>
     <table class= "table table-dark">
         <thead>
             <tr>
@@ -22,5 +22,11 @@ id id_historia id_pago estado fecha descuento total-->
         <tbody>
         </tbody>
     </table>
-</div>
+</br>
+</br>
+        <form action="get_historia/{{historias.0}}/add_factura" method="GET">
+            <label for="validationServer01" style="text-align: right!important;">Añadir factura</label>
+            <button type="submit">Añadir</button>
+        </form>
+</br>
 {% endblock %}

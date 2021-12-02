@@ -15,7 +15,7 @@ def usuario():
 def vista_cliente(username):
     return render_template('/usuariot/cliente.html', name = username, mascotas = get_mascotas(username))
 
-@routes.route('/vista_admin/<string:username>')
+@routes.route('/admin/<string:username>')
 def vista_admin(username):
     return render_template('./administrador/admin.html', name = username)
 
@@ -70,7 +70,7 @@ def login():
                     if data[0][1] == 2:
                         return redirect("./vista_cliente/"+username)
                     if data[0][1] == 1:
-                        return redirect("./vista_admin/"+username)
+                        return redirect("./admin/"+username)
             flash('Contraseña incorrecta')
             return redirect('/')
         else:

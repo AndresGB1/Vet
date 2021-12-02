@@ -36,7 +36,7 @@ def get_historia_id(username):
         cur.close()
         print(historias)
         if(len(historias) > 0):
-            return render_template('/administrador/facturas_mascota.html',name=username, historias = historias)
+            return render_template('/administrador/facturas_mascota.html',name=username, historias = historias[0])
         return redirect('/vista_admin/'+username+'/nueva_historia')
         flash('Historia cargada exitosamente!')
 
