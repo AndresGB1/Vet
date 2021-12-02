@@ -4,12 +4,12 @@ from .. import routes
 
 
 #template
-@routes.route('/vista_admin/<string:username>/nueva_historia', methods=['GET'])
+@routes.route('/admin/<string:username>/nueva_historia', methods=['GET'])
 def nueva_historia(username):
     return render_template('./usuariot/add_historia.html', name = username)
 
 #Añadiendo la historia a una mascota (id_mascota empleado fecha_creacion estado )
-@routes.route('/vista_admin/<string:username>/add_historia', methods=['POST'])
+@routes.route('/admin/<string:username>/add_historia', methods=['POST'])
 def add_historia(username):
     try:
         if request.method == 'POST':
@@ -22,11 +22,11 @@ def add_historia(username):
             mysql.connection.commit()
             cur.close()
             flash('Historia creada exitosamente!')
-            return redirect('/vista_admin/'+username+'/nueva_historia')
+            return redirect('/admin/'+username+'/nueva_historia')
     except:
-        return redirect('/vista_admin/'+username+'/nueva_historia')
+        return redirect('/admin/'+username+'/nueva_historia')
 #get_historias_id
-@routes.route('/vista_admin/<string:username>/get_historia', methods=['POST'])
+@routes.route('/admin/<string:username>/get_historia', methods=['POST'])
 def get_historia_id(username):
 
         id = request.form['historia']
@@ -37,7 +37,7 @@ def get_historia_id(username):
         print(historias)
         if(len(historias) > 0):
             return render_template('/administrador/facturas_mascota.html',name=username, historias = historias[0])
-        return redirect('/vista_admin/'+username+'/nueva_historia')
+        return redirect('/admin/'+username+'/nueva_historia')
         flash('Historia cargada exitosamente!')
 
 

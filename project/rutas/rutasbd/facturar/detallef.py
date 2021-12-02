@@ -4,7 +4,7 @@ from .. import mysql
 
 @routes.route('/')
 #Añadiendo id_factura id_servicio a los detalles de la factura
-@routes.route('/vista_admin/<username>/mascota/add_color', methods=['POST'])
+@routes.route('/admin/<username>/mascota/add_color', methods=['POST'])
 def add_detalle_factura(username):
     try:
         if request.method == 'POST':

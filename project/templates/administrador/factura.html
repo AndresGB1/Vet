@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{%block body %}
+<!--Añadiendo la factura -->
+<!--id id_historia id_pago fecha descuento total estado-->
+<div class="container">
+
+    <div class="col-md-12">
+        <label for="validationServer01" style="text-align: right!important;">Fecha de creación de la factura</label>
+        <input class="form-control" name = "fecha" required type="date" placeholder="date">
+    </div>
+    <div class="field">
+        <div class="control">
+        <label for="validationServer01" style="text-align: right!important;">Descuento</label>
+          <input type="text" name="descuento" placeholder="Descuento" />             
+        </div>
+      </div>
+      <div class="field">
+          <div class="control">
+              <input type="text" name="total" placeholder="Total" />
+              <
+          </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <select name="id_especie" >
+                {% for especie in especies %}
+                <option value="{{especie.0}}">{{especie.1}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+</div>
+{%endblock%}

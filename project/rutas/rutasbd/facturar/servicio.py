@@ -7,6 +7,7 @@ from .tipo import *
 @routes.route('/admin/<string:username>/servicio', methods=['GET'])
 def nuevo_servicio(username):
     return render_template('/usuariot/add_servicio.html',username=username, tipos = get_tipos(), servicios = get_servicios())
+
 #Añadiendo id_tipo nombre descripcion costo iva estado
 @routes.route('/admin/<string:username>/add_servicio', methods=['POST'])
 def add_servicio(username):
@@ -24,11 +25,11 @@ def add_servicio(username):
             cur.close()
             flash('Servicio agregado con exito','success')
             print("Agregado prros :D ")
-            return redirect('/admin/'+username+'/nuevo_servicio')
+            return redirect('/admin/'+username+'/servicio')
     except Exception as e:
         flash('Error al agregar el servicio','danger')
         print("No funciono ",e)
-        return redirect('/admin/'+username+'/nuevo_servicio')
+        return redirect('/admin/'+username+'/servicio')
        
 #get_servicios
 @routes.route('/admin/<string:username>/get_servicios', methods=['GET'])

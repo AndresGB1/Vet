@@ -2,11 +2,14 @@ from flask import render_template, redirect,url_for,request, flash
 from .. import routes
 from .. import mysql
 
+@routes.route('/admin/<string:username>/get_historia/<id>/factura', methods=['GET'])
+def factura(username,id):
+    return render_template('administrador/factura.html',username=username ,id=id)
 
 #Añadiendo una factura (id_historia id_pago fecha descuento total estado)
-@routes.route('user/<string:username>/get_historia/<id_h>/add_factura', methods=['POST'])
-def add_factura(id_h):
-    try:
+@routes.route('/admin/<string:username>/get_historia/<id>/add_factura', methods=['POST','GET'])
+def add_factura(username):
+    try:            
         if request.method == 'POST':
             id_historia = request.form['id_historia']
             id_pago = request.form['id_pago']
@@ -33,10 +36,3 @@ def get_facturas():
     cur.close()
     return render_template('usuariot/facturas_mascota.html', facturas=facturas)
 
-@routes.route('/historia/<id>/', methods=['GET'])
-def get_facturas():
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM factura")
-    facturas = cur.fetchall()
-    cur.close()
-    return render_template('usuariot/facturas_mascota.html', facturas=facturas)
