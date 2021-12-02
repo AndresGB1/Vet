@@ -1,0 +1,69 @@
+<h1>
+    Añadir una nueva factura para la mascota
+</h1>
+<!-- Creando una factura -->
+<!--id id_historia id_pago  fecha descuent tototal estado-->
+<section class="container">
+    <div class="columns is-multiline">
+      <div class="column is-6 is-offset-2 register">
+        <div class="columns">
+          <div class="column right has-text-centered">
+            <h1 class="title is-4">Añadir Historia</h1>
+            <form action="/vista_admin/{{name}}/historia/{{historia}}/add_factura" method="POST">
+            </br>
+            <div class="field">
+                <div class="control">
+                    <div class="col-md-12">
+                        <label for="validationServer01" style="text-align: right!important;">Fecha de creación de la factura</label>
+                        <input class="form-control" name = "fecha_factura" required type="date" placeholder="date">
+                    </div>
+                </div>
+            </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="label">Descuento</label>
+                        <input class="input" type="text" name="descripcion" placeholder="Descripcion">
+                    </div>
+                </div>
+            </br>
+            
+        </br>
+              <button type="submit">Save</button>
+              <br />
+            </form>
+            <br/>
+            <h1 class="title is-4">Ir a Historia</h1>
+
+
+            <form action="/vista_admin/{{name}}/get_historia/" method="GET">
+            </br>
+                <div class="field">
+                    <div class="control">
+                    <input type="text" name="id_mascota" placeholder="id_mascota" />
+                    </div>
+                </div>
+            </br>
+            <div class="field">
+                <div class="control">
+                    <div class="col-md-12">
+                        <label for="validationServer01" style="text-align: right!important;">Fecha de creación de la historia</label>
+                        <input class="form-control" name = "fecha_historia" required type="date" placeholder="date">
+                    </div>
+                </div>
+            </div>
+        </br>
+              <button type="submit">Ir</button>
+              <br />
+            </form>
+          </div>
+        </div>
+        #añadir factura
+        <div>
+            <label for="validationServer01" style="text-align: right!important;">Añadir factura</label>
+            <button type="submit">Añadir</button>
+        </div>
+      </div>
+      
+     
+    </div>
+  </section>

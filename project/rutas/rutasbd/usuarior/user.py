@@ -17,11 +17,8 @@ def vista_cliente(username):
 
 @routes.route('/vista_admin/<string:username>')
 def vista_admin(username):
-    return render_template('./usuariot/admin.html', name = username)
+    return render_template('./administrador/admin.html', name = username)
 
-@routes.route('/vista_veterinario/<string:username>')
-def vista_veterinario(username):
-    return render_template('./usuariot/veterinario.html', name = username)
 
 @routes.route('/registrar_usuario', methods=['POST'])
 def registrar_usuario():
@@ -72,8 +69,6 @@ def login():
                     flash('Logueado exitosamente')
                     if data[0][1] == 2:
                         return redirect("./vista_cliente/"+username)
-                    if data[0][1] == 3:
-                        return redirect("./vista_veterinario/"+username)
                     if data[0][1] == 1:
                         return redirect("./vista_admin/"+username)
             flash('Contraseña incorrecta')

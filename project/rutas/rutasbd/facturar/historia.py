@@ -1,15 +1,15 @@
-from flask import render_template, redirect,url_for,request, flash
+from flask import render_template, redirect,request, flash
 from .. import mysql
 from .. import routes
 
 
 #template
-@routes.route('/vista_veterinario/<string:username>/nueva_historia', methods=['GET'])
+@routes.route('/vista_admin/<string:username>/nueva_historia', methods=['GET'])
 def nueva_historia(username):
     return render_template('./usuariot/add_historia.html', name = username)
 
 #Añadiendo la historia a una mascota (id_mascota empleado fecha_creacion estado )
-@routes.route('/vista_veterinario/<string:username>/add_historia', methods=['POST'])
+@routes.route('/vista_admin/<string:username>/add_historia', methods=['POST'])
 def add_historia(username):
     try:
         if request.method == 'POST':
@@ -22,34 +22,22 @@ def add_historia(username):
             mysql.connection.commit()
             cur.close()
             flash('Historia creada exitosamente!')
-            return redirect('/vista_veterinario/'+username+'/nueva_historia')
+            return redirect('/vista_admin/'+username+'/nueva_historia')
     except:
-        return redirect('/vista_veterinario/'+username+'/nueva_historia')
-#get_historias
-@routes.route('/vista_veterinario/<string:username>/get_historia', methods=['GET'])
-def get_historia(username):
-    try:
+        return redirect('/vista_admin/'+username+'/nueva_historia')
+#get_historias_id
+@routes.route('/vista_admin/<string:username>/get_historia', methods=['POST'])
+def get_historia_id(username):
+
+        id = request.form['historia']
         cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM historia WHERE estado = 1")
+        cur.execute('SELECT * FROM historia WHERE id_mascota = %s', (id))
         historias = cur.fetchall()
         cur.close()
-        flash('Historias cargadas exitosamente!')
-        return historias
-    except:
-        flash('Error al obtener historias!')
-        return redirect('/vista_veterinario/'+username+'/nueva_historia')
-
-#get_historias_id
-@routes.route('/vista_veterinario/<string:username>/get_historia_id/<string:id_historia>', methods=['GET'])
-def get_historia_id(username,id_historia):
-    try:
-        cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM historia WHERE id_historia = %s", (id_historia))
-        historia = cur.fetchall()
-        cur.close()
+        print(historias)
+        if(len(historias) > 0):
+            return render_template('/administrador/facturas_mascota.html',name=username, historias = historias)
+        return redirect('/vista_admin/'+username+'/nueva_historia')
         flash('Historia cargada exitosamente!')
-        return historia
-    except:
-        flash('Error al obtener historia!')
-        return redirect('/vista_veterinario/'+username+'/nueva_historia')
+
 

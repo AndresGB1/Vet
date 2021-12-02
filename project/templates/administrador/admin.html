@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block body %}
+<form action='/vista_admin/{{name}}/servicio' method="GET">
+    <button style="width: 140px; margin-left: 10%;"  type="submit"  >add servicio</button>
+</form>
+</br>
+<form action='/vista_admin/{{name}}/usuarios' method="GET">
+    <button style="width: 140px; margin-left: 10%;"  type="submit"  >ver usuarios</button>
+</form>
+</br>
+<form action='/vista_admin/{{name}}/raza' method="GET">
+    <button style="width: 140px; margin-left: 10%;"  type="submit"  >raza</button>
+</form>
+</br>
+<form action='/vista_admin/{{name}}/color' method="GET">
+    <button style="width: 140px; margin-left: 10%;"  type="submit"  >color</button>
+</form>
+</br>
+<form action='/vista_admin/{{name}}/metodo_pago' method="GET">
+    <button style="width: 200px; margin-left: 10%;"  type="submit"  >metodo de pago</button>
+</form>
+</br>
+<form action=" /vista_admin/{{name}}/nueva_historia" method="GET">
+    <button type="submit" style = "width:200px; margin-left: 10%;"method = "POST"id="login_btn"class="btn btn-primary">Historia</button>
+</form>
+</br>
+<form action=" /vista_admin/{{name}}/add_veterinario" method="GET">
+    <button type="submit" style = "width:200px; margin-left: 10%;"method = "POST"id="login_btn"class="btn btn-primary">Añadir Veterinario</button>
+</form>
+</br>
+
+<form action='/vista_admin/{{name}}/cargar_excel' method="GET">
+    <button style="width: 200px; margin-left: 10%;"  type="submit"  >cargar excel</button>
+</form>
+</br>
+{% endblock %}

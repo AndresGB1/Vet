@@ -4,7 +4,7 @@ from .. import routes
 from .tipo import *
 
 
-@routes.route('/vista_admin/<string:username>/nuevo_servicio', methods=['GET'])
+@routes.route('/vista_admin/<string:username>/servicio', methods=['GET'])
 def nuevo_servicio(username):
     return render_template('/usuariot/add_servicio.html',username=username, tipos = get_tipos(), servicios = get_servicios())
 #Añadiendo id_tipo nombre descripcion costo iva estado

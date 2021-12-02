@@ -4,7 +4,7 @@ from .. import mysql
 
 
 #Añadiendo una factura (id_historia id_pago fecha descuento total estado)
-@routes.route('/historia/add_factura', methods=['POST'])
+@routes.route('/historia/<id_h>/add_factura', methods=['POST'])
 def add_factura(id_h):
     try:
         if request.method == 'POST':
@@ -24,4 +24,19 @@ def add_factura(id_h):
         flash('Error al agregar factura')
         print("No funciono ",e)
         return redirect('/')
-       
+#get_facturas
+@routes.route('/vista_cliente/agalvisb/ver_mascota', methods=['GET'])
+def get_facturas():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM factura")
+    facturas = cur.fetchall()
+    cur.close()
+    return render_template('usuariot/facturas_mascota.html', facturas=facturas)
+
+@routes.route('/historia/<id>/', methods=['GET'])
+def get_facturas():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM factura")
+    facturas = cur.fetchall()
+    cur.close()
+    return render_template('usuariot/facturas_mascota.html', facturas=facturas)
