@@ -11,7 +11,7 @@ import hashlib
 def usuario():
     return render_template('/usuariot/usuario.html',roles = [[2,"Cliente",1]], tdocumentos = get_tipo_documento())
 
-@routes.route('/vista_cliente/<string:username>')
+@routes.route('/cliente/<string:username>')
 def vista_cliente(username):
     return render_template('/usuariot/cliente.html', name = username, mascotas = get_mascotas(username))
 
@@ -43,8 +43,9 @@ def registrar_usuario():
                 cur .execute("INSERT INTO usuario (username,id_rol,id_documento, numeroDoc, nombres, apellidos, fecha_nacimiento,pasword,sexo,direccion,correo,estado) VALUES(%s,%s,%s ,%s,%s, %s,%s, %s,%s, %s,%s, %s)", (username, id_rol,id_documento,numeroDoc, nombres, apellidos, fecha_nacimiento,password,sexo,direccion,correo,estado))  
                 mysql.connection.commit()
                 flash('User added successfully!')
-                return redirect('/vista_cliente')
+                return redirect('/cliente/'+username)
             else:
+                flash('Usuario ya existe')
                 return redirect('/registrar')
                 #return render_template('./usuario/usuario.html',roles = [[2,"Cliente",1]], tdocumentos = get_tipo_documento())
 
@@ -68,7 +69,7 @@ def login():
                 if data[0][7] == hashed:
                     flash('Logueado exitosamente')
                     if data[0][1] == 2:
-                        return redirect("./vista_cliente/"+username)
+                        return redirect("./cliente/"+username)
                     if data[0][1] == 1:
                         return redirect("./admin/"+username)
             flash('Contraseña incorrecta')

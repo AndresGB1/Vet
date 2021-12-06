@@ -6,11 +6,11 @@ from .raza import *
 
 
        
-@routes.route('/vista_cliente/<string:username>/nueva_mascota', methods=['GET'])
+@routes.route('/cliente/<string:username>/nueva_mascota', methods=['GET'])
 def nueva_mascota(username):
     return render_template('usuariot/add_mascotas.html', name=username, colores = get_colores(), especies=get_especies(), razas=get_all_razas())
 
-@routes.route('/vista_cliente/<string:username>/add_mascota', methods=['POST'])
+@routes.route('/cliente/<string:username>/add_mascota', methods=['POST'])
 def add_mascotau(username): 
     if request.method == 'POST':
         try:
@@ -26,12 +26,12 @@ def add_mascotau(username):
             cur .execute("INSERT INTO mascota (id_usuario, id_raza, id_color, nombre, sexo, peso, fecha_nacimiento, estado) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (id_usuario, id_raza, id_color, nombre, sexo, peso, fechaNacimiento, estado))
             mysql.connection.commit()
             flash('Mascota added successfully!')
-            return redirect('/vista_cliente/'+username+'/nueva_mascota') 
+            return redirect('/cliente/'+username+'/nueva_mascota') 
         except Exception as e:
             print('Error: ' + str(e))
-            return redirect('/vista_cliente/'+username+'/nueva_mascota')
+            return redirect('/cliente/'+username+'/nueva_mascota')
 
-@routes.route('/vista_cliente/<string:username>/ver_mascotas', methods=['GET'])
+@routes.route('/cliente/<string:username>/ver_mascotas', methods=['GET'])
 def ver_mascotau(username):
     if request.method == 'GET':
         return render_template('usuariot/mascotas.html', name=username, mascotas=get_mascotas(username))
@@ -47,7 +47,7 @@ def get_mascotas(username):
     return data
 
 #get_by_id
-@routes.route('/vista_cliente/<string:username>/get_mascota/<string:id>', methods=['GET'])
+@routes.route('/cliente/<string:username>/get_mascota/<string:id>', methods=['GET'])
 def get_mascota(username, id):
     if request.method == 'GET':
         cur = mysql.connection.cursor()
@@ -57,10 +57,10 @@ def get_mascota(username, id):
     
 
 #delete_by_id
-@routes.route('/vista_cliente/<string:username>/delete_mascota/<string:id>', methods=['GET', 'POST'])
+@routes.route('/cliente/<string:username>/delete_mascota/<id>', methods=['GET', 'POST'])
 def delete_mascota(username, id):
     cur = mysql.connection.cursor()
-    cur.execute("update mascota SET estado = false WHERE id = %s", (id))
+    cur.execute('update mascota SET estado = false WHERE id = %s', [id])
     mysql.connection.commit()
     cur.close()
-    return redirect('/vista_cliente/'+username+'/ver_mascotas')
+    return redirect('/cliente/'+username+'/ver_mascotas')

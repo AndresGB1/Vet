@@ -8,7 +8,7 @@ def factura(username,id):
 
 #Añadiendo una factura (id_historia id_pago fecha descuento total estado)
 @routes.route('/admin/<string:username>/get_historia/<id>/add_factura', methods=['POST','GET'])
-def add_factura(username):
+def add_factura(username,id):
     try:            
         if request.method == 'POST':
             id_historia = request.form['id_historia']
@@ -28,7 +28,7 @@ def add_factura(username):
         print("No funciono ",e)
         return redirect('/')
 #get_facturas
-@routes.route('/vista_cliente/agalvisb/ver_mascota', methods=['GET'])
+@routes.route('/cliente/agalvisb/ver_mascota', methods=['GET'])
 def get_facturas():
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM factura")

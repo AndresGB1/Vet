@@ -31,12 +31,13 @@ def get_historia_id(username):
 
         id = request.form['historia']
         cur = mysql.connection.cursor()
-        cur.execute('SELECT * FROM historia WHERE id_mascota = %s', (id))
+        cur.execute('SELECT * FROM historia WHERE id_mascota = %s', [id])
         historias = cur.fetchall()
         cur.close()
         print(historias)
         if(len(historias) > 0):
             return render_template('/administrador/facturas_mascota.html',name=username, historias = historias[0])
+        flash('No existe la historia')
         return redirect('/admin/'+username+'/nueva_historia')
         flash('Historia cargada exitosamente!')
 

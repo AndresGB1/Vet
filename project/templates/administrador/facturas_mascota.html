@@ -1,32 +1,32 @@
-{% extends "layout.html" %}
-{% block body %}
+    {% extends "layout.html" %}
+    {% block body %}
 
-<!--Viendo las facturas
-id id_historia id_pago estado fecha descuento total-->
+    <!--Viendo las facturas
+    id id_historia id_pago estado fecha descuento total-->
 
-<div class="container">
-    <h1> Aqui puedes ver las facturas de la mascota</h1>
-</br>
-    <table class= "table table-dark">
-        <thead>
-            <tr>
-            <th scope="col">ID</th>
-            <th scope="col">ID Historia</th>
-            <th scope="col">ID Pago</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Descuento</th>
-            <th scope="col">Total</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-</br>
-</br>
-        <form action="get_historia/{{historias.0}}/add_factura" method="GET">
-            <label for="validationServer01" style="text-align: right!important;">Añadir factura</label>
-            <button type="submit">Añadir</button>
-        </form>
-</br>
-{% endblock %}
+    <div class="container">
+        <h1> Aqui puedes ver las facturas de la mascota</h1>
+    </br>
+        <table class= "table table-dark">
+            <thead>
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">ID Historia</th>
+                <th scope="col">ID Pago</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Descuento</th>
+                <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </br>
+    </br>
+            <form action="get_historia/{{historias.0}}/factura" method="GET">
+                <label for="validationServer01" style="text-align: right!important;">Añadir factura</label>
+                <button type="submit">Añadir</button>
+            </form>
+    </br>
+    {% endblock %}
