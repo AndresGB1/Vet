@@ -1,6 +1,7 @@
 from flask import render_template, redirect,request, flash
 from .. import mysql
 from .. import routes
+from .factura import *
 
 
 #template
@@ -34,9 +35,8 @@ def get_historia_id(username):
         cur.execute('SELECT * FROM historia WHERE id_mascota = %s', [id])
         historias = cur.fetchall()
         cur.close()
-        print(historias)
         if(len(historias) > 0):
-            return render_template('/administrador/facturas_mascota.html',name=username, historias = historias[0])
+            return render_template('/administrador/facturas_mascota.html',name=username, historias = historias[0],facturas=get_facturas() )
         flash('No existe la historia')
         return redirect('/admin/'+username+'/nueva_historia')
         flash('Historia cargada exitosamente!')

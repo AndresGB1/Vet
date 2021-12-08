@@ -34,5 +34,5 @@ def get_facturas():
     cur.execute("SELECT * FROM factura")
     facturas = cur.fetchall()
     cur.close()
-    return render_template('usuariot/facturas_mascota.html', facturas=facturas)
+    return facturas
 
