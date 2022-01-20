@@ -1,3 +1,1 @@
-templates/* linguist-documentation=false
-templates/* linguist-vendored
 *.python linguist-detectable=true
