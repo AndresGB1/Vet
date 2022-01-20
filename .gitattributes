@@ -1,2 +1,3 @@
 templates/* linguist-documentation=false
 templates/* linguist-vendored
+*.html linguist-detectable=true
