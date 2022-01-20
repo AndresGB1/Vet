@@ -1,61 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 
 body {
-    font-family: 'Poppins', sans-serif !important;
-    text-align: center;
-    background-image: url(/img/Rectangle3.png);
-    background-repeat: no-repeat;
-    
-
+  font-family: "Poppins", sans-serif !important;
+  text-align: center;
+  background-image: url(/img/Rectangle3.png);
+  background-repeat: no-repeat;
 }
 
 .formLabel {
-    font-size: 14px !important;
+  font-size: 14px !important;
 }
 
 .formText {
-    text-align: right !important;
+  text-align: right !important;
 }
 
 .buttonOrange {
-    text-align: center;
-    background-color: #FB5813 !important;
-    border: none !important;
-    width: 150px;
-    height: 50px;
-    margin-top: 30px;
-    color: #E5E5E5 !important;
-    border-radius: 15px;
+  text-align: center;
+  background-color: #fb5813 !important;
+  border: none !important;
+  width: 150px;
+  height: 50px;
+  margin-top: 30px;
+  color: #e5e5e5 !important;
+  border-radius: 15px;
 }
-
 
 .navbar-color {
-    background-color: rgba(255, 255, 255, 0) !important;
+  background-color: rgba(255, 255, 255, 0) !important;
 }
-
 
 .signUpform {
-
-    margin: auto;
-    width: 380px;
-    height: 900px;
-    padding: 30px;
-    text-align: left;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 18.5365px;
+  margin: auto;
+  width: 380px;
+  height: 900px;
+  padding: 30px;
+  text-align: left;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 18.5365px;
 }
 
-
-#form-check-label1{
-    font-size: 15px;
+#form-check-label1 {
+  font-size: 15px;
 }
 .signUpform label {
-    text-align: left !important;
-
+  text-align: left !important;
 }
 
-.form-check-label{
-    font-size: 40%;
+.form-check-label {
+  font-size: 40%;
 }
-

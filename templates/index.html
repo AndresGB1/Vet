@@ -1,122 +1,183 @@
+{% extends "layout.html" %} {% block body %}
+<img
+  class="goback"
+  src="{{ url_for('static',filename='/img/rectangulo.png')}}"
+  alt=""
+/>
 
-  
-{% extends "layout.html" %}
-{% block body %}
-    <img class="goback" src="{{ url_for('static',filename='/img/rectangulo.png')}}" alt="">
-
-    <!-- formulario login  -->
-    <div class="formulario-login">
-        <form action="/login" method="POST" id="loginForm">
-            <div class="botones">
-                <img src="{{ url_for('static',filename='/img/Logo2.png')}}" alt="logo2">
-            </div>
-            <div>
-                <label class="form-label">UserName</label>
-                <input type="text" name="username" id="username" class="form-control"  required>
-            </div>
-            <div>
-                <label class="form-label">Password</label>
-                <input type="password" name="password" id="password" class="form-control" id="exampleInputPassword1" required>
-            </div>
-            <br>
-            <div class="botones">
-                <button type="submit" method = "POST"id="login_btn"class="btn btn-primary">Login</button>
-                <br>
-            </div>
-        </form>
-        
-        <a style="text-decoration: none;" href="/registrar">
-            <p style="font-size: 15px;">Crear cuenta</p>
-        </a>
+<!-- formulario login  -->
+<div class="formulario-login">
+  <form action="/login" method="POST" id="loginForm">
+    <div class="botones">
+      <img src="{{ url_for('static',filename='/img/Logo2.png')}}" alt="logo2" />
     </div>
-    <!-- fin formulario -->
-
-
-    <!-- collage -->
-    <div class="container contenedor">
-        <div class="row">
-            <div class="col-6 p-2 mt-3" style="margin-top: 40px !important;">
-
-                <img class="foto" src="{{ url_for('static',filename='/img/conejo.png')}}" alt="conejoRalph">
-                <img class="foto fotoArriba " src="{{ url_for('static',filename='/img/perros.png')}}" alt="Perros">
-                <img class="foto" src="{{ url_for('static',filename='/img/gato.png')}}" alt="Gato">
-
-                <img class="foto" src="{{ url_for('static',filename='/img/perro.png')}}" alt="conejoRalph">
-                <img class="foto fotoArriba" src="{{ url_for('static',filename='/img/gato2.png')}}" alt="Perros">
-                <img class="foto" src="{{ url_for('static',filename='/img/perro2.png')}}" alt="Gato">
-            </div>
-
-            <div class="col-3">
-
-            </div>
-
-            <div class="col-3">
-                <img class="alignRight" src="{{ url_for('static',filename='/img/logoPets.png')}}" alt="Veterinaria los cobos">
-            </div>
-        </div>
+    <div>
+      <label class="form-label">UserName</label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        class="form-control"
+        required
+      />
     </div>
-    <!-- fin college -->
-
-
-    <br><br>
-    <div class="container" id="whoWeAre">
-        <div class="row">
-            <div class="col-md-6 col-lg-6 col-12 description">
-                <h2>¿Quienes Somos?</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, rem. Quaerat, dolore
-                    consectetur eius ullam omnis praesentium molestias corporis ipsa repellat! Autem cupiditate
-                    voluptates magni placeat doloribus quisquam culpa quos.</p>
-            </div>
-            <div class="col-md-6 col-lg-6 col-12">
-                <img class="img-people"
-                    src="https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                    alt="team" width="670px" height="700px">
-            </div>
-        </div>
+    <div>
+      <label class="form-label">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        required
+      />
     </div>
+    <br />
+    <div class="botones">
+      <button
+        type="submit"
+        method="POST"
+        id="login_btn"
+        class="btn btn-primary"
+      >
+        Login
+      </button>
+      <br />
+    </div>
+  </form>
 
+  <a style="text-decoration: none" href="/registrar">
+    <p style="font-size: 15px">Crear cuenta</p>
+  </a>
+</div>
+<!-- fin formulario -->
 
-    <div class="container" id="purpose">
-        <div class="row">
-            <div class="col-6 ">
-                <img class="dogImg" src="{{ url_for('static',filename='/img/dog3.png')}}" alt="dog">
-            </div>
-            <div class="col-6 description">
+<!-- collage -->
+<div class="container contenedor">
+  <div class="row">
+    <div class="col-6 p-2 mt-3" style="margin-top: 40px !important">
+      <img
+        class="foto"
+        src="{{ url_for('static',filename='/img/conejo.png')}}"
+        alt="conejoRalph"
+      />
+      <img
+        class="foto fotoArriba"
+        src="{{ url_for('static',filename='/img/perros.png')}}"
+        alt="Perros"
+      />
+      <img
+        class="foto"
+        src="{{ url_for('static',filename='/img/gato.png')}}"
+        alt="Gato"
+      />
 
-                <h2>Proposito</h2>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque minus, adipisci ex, dolorem eius
-                    veritatis obcaecati soluta voluptas doloremque suscipit eaque eligendi perferendis libero. Molestias
-                    suscipit eum voluptatum illo maiores.</p>
-
-            </div>
-        </div>
+      <img
+        class="foto"
+        src="{{ url_for('static',filename='/img/perro.png')}}"
+        alt="conejoRalph"
+      />
+      <img
+        class="foto fotoArriba"
+        src="{{ url_for('static',filename='/img/gato2.png')}}"
+        alt="Perros"
+      />
+      <img
+        class="foto"
+        src="{{ url_for('static',filename='/img/perro2.png')}}"
+        alt="Gato"
+      />
     </div>
 
+    <div class="col-3"></div>
 
-    <footer>
+    <div class="col-3">
+      <img
+        class="alignRight"
+        src="{{ url_for('static',filename='/img/logoPets.png')}}"
+        alt="Veterinaria los cobos"
+      />
+    </div>
+  </div>
+</div>
+<!-- fin college -->
 
-        <div class="container">
-            <div class="row text-center mb-2">
-                <div class="col-6"><img src="{{ url_for('static',filename='/img/logoFooter.png')}}" alt=""></div>
-                <div class="col-6">
-                    <p class="text-light">Integrantes</p>
-                    <a href="https://github.com/EstebanCardenas14"><img class="avatar"
-                            src="https://avatars.githubusercontent.com/u/65410166?v=4" alt=""></a>
-                    <a href="https://github.com/AndresFGB7"><img class="avatar"
-                            src="https://avatars.githubusercontent.com/u/65410285?v=4" alt=""></a>
-                </div>
+<br /><br />
+<div class="container" id="whoWeAre">
+  <div class="row">
+    <div class="col-md-6 col-lg-6 col-12 description">
+      <h2>¿Quienes Somos?</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium,
+        rem. Quaerat, dolore consectetur eius ullam omnis praesentium molestias
+        corporis ipsa repellat! Autem cupiditate voluptates magni placeat
+        doloribus quisquam culpa quos.
+      </p>
+    </div>
+    <div class="col-md-6 col-lg-6 col-12">
+      <img
+        class="img-people"
+        src="https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+        alt="team"
+        width="670px"
+        height="700px"
+      />
+    </div>
+  </div>
+</div>
 
+<div class="container" id="purpose">
+  <div class="row">
+    <div class="col-6">
+      <img
+        class="dogImg"
+        src="{{ url_for('static',filename='/img/dog3.png')}}"
+        alt="dog"
+      />
+    </div>
+    <div class="col-6 description">
+      <h2>Proposito</h2>
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque minus,
+        adipisci ex, dolorem eius veritatis obcaecati soluta voluptas doloremque
+        suscipit eaque eligendi perferendis libero. Molestias suscipit eum
+        voluptatum illo maiores.
+      </p>
+    </div>
+  </div>
+</div>
 
-            </div>
-            <div class="row text-center">
-                <div class="col-12">
-                    <p class="text-light">© Veterinaria los cobos</p>
-                </div>
-            </div>
-        </div>
-
-
-    </footer>
+<footer>
+  <div class="container">
+    <div class="row text-center mb-2">
+      <div class="col-6">
+        <img
+          src="{{ url_for('static',filename='/img/logoFooter.png')}}"
+          alt=""
+        />
+      </div>
+      <div class="col-6">
+        <p class="text-light">Integrantes</p>
+        <a href="https://github.com/EstebanCardenas14"
+          ><img
+            class="avatar"
+            src="https://avatars.githubusercontent.com/u/65410166?v=4"
+            alt=""
+        /></a>
+        <a href="https://github.com/AndresFGB7"
+          ><img
+            class="avatar"
+            src="https://avatars.githubusercontent.com/u/65410285?v=4"
+            alt=""
+        /></a>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-12">
+        <p class="text-light">© Veterinaria los cobos</p>
+      </div>
+    </div>
+  </div>
+</footer>
 
 {% endblock %}
-
