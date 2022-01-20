@@ -1,29 +1,42 @@
-{% extends "layout.html" %}
-{% block body %}
+{% extends "layout.html" %} {% block body %}
 <!--Agregando  la factura -->
 <!--id id_historia id_pago fecha descuento total estado -->
 <form action="/login" method="POST" id="loginForm">
-
-    <div>
-        <label class="form-label">historia</label>
-        <input type="text"  name="id_historia"class="form-control" placeholder="id_historia" required>
-
-    </div>
-    <div class="col-md-12">
-        <label for="validationServer01" style="text-align: right!important;">Fecha de creación</label>
-        <input class="form-control" name = "date" required type="date" placeholder="date">
-      </div>
-    <div>
-        <select name="id_pago">
-            {% for forma_pago in formas_pago %}
-                <option value="{{forma_pago.0}}">{{tipo_documento.1}}</option>
-            {% endfor %}
-        </select>
-    </div>
-    <br>
-    <div class="botones">
-        <button type="submit" method = "POST"id="login_btn"class="btn btn-primary">Login</button>
-        <br>
-    </div>
+  <div>
+    <label class="form-label">historia</label>
+    <input
+      type="text"
+      name="id_historia"
+      class="form-control"
+      placeholder="id_historia"
+      required
+    />
+  </div>
+  <div class="col-md-12">
+    <label for="validationServer01" style="text-align: right !important"
+      >Fecha de creación</label
+    >
+    <input
+      class="form-control"
+      name="date"
+      required
+      type="date"
+      placeholder="date"
+    />
+  </div>
+  <div>
+    <select name="id_pago">
+      {% for forma_pago in formas_pago %}
+      <option value="{{forma_pago.0}}">{{tipo_documento.1}}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <br />
+  <div class="botones">
+    <button type="submit" method="POST" id="login_btn" class="btn btn-primary">
+      Login
+    </button>
+    <br />
+  </div>
 </form>
 {%endblock%}

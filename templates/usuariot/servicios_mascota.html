@@ -1,32 +1,32 @@
-{% extends "layout.html" %}
-{% block body %}
+{% extends "layout.html" %} {% block body %}
 <!--Agregando  la factura -->
 <!--id id_historia id_pago fecha descuento total estado -->
-<h1>Estos son los servicios que se tiene la factura</h1>>
+<h1>Estos son los servicios que se tiene la factura</h1>
+>
 <div class col-md-4>
   <table>
-      <thead>
-          <tr>
-          <th>ID</th>
-          <th>tipo</th>
-          <th>Nombre</th>
-          <th>Descripcion</th>
-          <th>Costo</th>
-          <th>Iva</th>
-          </tr>
-      </thead>
-      <tbody>
-          {% for servicio in servicios %}
-          <tr>
-              <td>{{servicio.0}}</td>
-              <td>{{servicio.1}}</td>
-              <td>{{servicio.2}}</td>
-              <td>{{servicio.3}}</td>
-              <td>{{servicio.4}}</td>
-              <td>{{servicio.5}}</td>
-          </tr>
-          {% endfor %}
-      </tbody>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>tipo</th>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+        <th>Costo</th>
+        <th>Iva</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for servicio in servicios %}
+      <tr>
+        <td>{{servicio.0}}</td>
+        <td>{{servicio.1}}</td>
+        <td>{{servicio.2}}</td>
+        <td>{{servicio.3}}</td>
+        <td>{{servicio.4}}</td>
+        <td>{{servicio.5}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
   </table>
 </div>
 {%endblock%}

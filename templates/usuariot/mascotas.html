@@ -1,52 +1,53 @@
 {% extends "/usuariot/cliente.html" %} {% block table %}
 <!--Se ven los servicios prestados en una factura
 id id_raza id_usuario id_color nombre sexo peso fecha_nacimiento estado-->
-
 <div>
   <div class="container">
+    <h1 class="title is-4">Mascotas</h1>
+    <table class="table table-blue">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">id mascota</th>
+          <th scope="col">cliente</th>
+          <th scope="col">raza</th>
+          <th scope="col">color</th>
+          <th scope="col">nombre</th>
+          <th scope="col">sexo</th>
+          <th scope="col">peso</th>
+          <th scope="col">fecha de nacimiento</th>
+          <th scope="col">Historia</th>
+          <th scope="col">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for mascota in mascotas %} {% if mascota.8 == 1 %}
+        <tr>
+          <td>{{mascota.0}}</td>
+          <td>{{mascota.1}}</td>
+          <td>{{mascota.2}}</td>
+          <td>{{mascota.3}}</td>
+          <td>{{mascota.4}}</td>
+          <td>{{mascota.5}}</td>
+          <td>{{mascota.6}}</td>
+          <td>{{mascota.7}}</td>
+          <td>
+            <form action="  " method="post">
+              <input type="submit" value=" Historia " />
+            </form>
+          </td>
+          <td>
+            <form
+              action=" /cliente/{{mascota.1}}/delete_mascota/{{mascota.0}} "
+              method="post"
+            >
+              <input type="submit" value="Eliminar" />
+            </form>
+          </td>
+        </tr>
 
-  <h1 class="title is-4">Mascotas</h1>
-  <table class = "table table-blue">
-    <thead class="thead-light">
-      <tr>
-        <th scope="col">id mascota</th>
-        <th scope="col">cliente</th>
-        <th scope="col">raza</th>
-        <th scope="col">color</th>
-        <th scope="col">nombre</th>
-        <th scope="col">sexo</th>
-        <th scope="col">peso</th>
-        <th scope="col">fecha de nacimiento</th>
-        <th scope="col">Historia</th>
-        <th scope="col">Eliminar</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for mascota in mascotas %} {% if mascota.8 == 1 %}
-      <tr>
-        <td>{{mascota.0}}</td>
-        <td>{{mascota.1}}</td>
-        <td>{{mascota.2}}</td>
-        <td>{{mascota.3}}</td>
-        <td>{{mascota.4}}</td>
-        <td>{{mascota.5}}</td>
-        <td>{{mascota.6}}</td>
-        <td>{{mascota.7}}</td>
-        <td>
-          <form action="  " method="post">
-            <input type="submit" value=" Historia " />
-          </form>
-        </td>
-        <td>
-          <form action=" /cliente/{{mascota.1}}/delete_mascota/{{mascota.0}} " method="post">
-            <input type="submit" value="Eliminar" />
-          </form>
-        </td>
-      </tr>
-
-      {% endif %} {% endfor %}
-    </tbody>
-  </table>
+        {% endif %} {% endfor %}
+      </tbody>
+    </table>
   </div>
 </div>
 {% endblock %}
