@@ -1,6 +1,6 @@
 from flask import render_template, redirect,url_for,request, flash
-from .. import mysql
 from .. import routes
+from database import mysql
 from .especie import *
 
 #Añadiendo una raza dentro de una especie en la base de datos

@@ -1,6 +1,6 @@
 from flask import render_template, redirect,url_for,request, flash
 from .. import routes
-from .. import mysql
+from database import mysql
 
 @routes.route('/admin/<string:username>/get_historia/<id>/factura', methods=['GET'])
 def factura(username,id):

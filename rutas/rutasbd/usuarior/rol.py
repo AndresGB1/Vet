@@ -1,7 +1,6 @@
-from flask import  render_template, redirect,url_for,request, flash
-from flask import Blueprint
+from flask import redirect,url_for,request, flash
 from .. import routes
-from .. import mysql
+from database import mysql
 
 
 
@@ -50,3 +49,4 @@ def edit_rol():
     except Exception as e:
         flash('Error al agregar el rol')
         return redirect(url_for('Index'))
+        

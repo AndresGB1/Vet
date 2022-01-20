@@ -1,6 +1,4 @@
 from flask import Flask, render_template, redirect,url_for,request, flash
-from .. import routes
-from .. import mysql
 from .rol import *
 from .documento import *
 from ..mascotar.mascota import *

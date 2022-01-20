@@ -1,7 +1,6 @@
 from flask import Blueprint
 
 
-from .. import mysql
 from .. import routes
 
 from .usuarior.rol import *

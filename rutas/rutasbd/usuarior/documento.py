@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect,url_for,request, flash
 from flask_mysqldb import MySQL
 from .. import routes
-from .. import mysql
+from database import mysql
 
 
 @routes.route('/add_documento', methods=['POST'])
@@ -27,5 +27,4 @@ def get_tipo_documento():
     data = cur.fetchall()
     mysql.connection.commit()
     cur.close()
-    print(data)
     return data

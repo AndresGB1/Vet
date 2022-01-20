@@ -1,6 +1,6 @@
 from flask import render_template, redirect,url_for,request, flash
 from .. import routes
-from .. import mysql
+from database import mysql
 
 @routes.route('/')
 #Añadiendo id_factura id_servicio a los detalles de la factura

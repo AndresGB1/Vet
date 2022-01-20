@@ -1,6 +1,6 @@
 from flask import render_template, redirect,url_for,request, flash
-from .. import mysql
 from .. import routes
+from database import mysql
 
 
 #Añadiendo el tipo de pago a la base de datos

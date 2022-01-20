@@ -1,6 +1,4 @@
 from flask import render_template, redirect,request, flash
-from .. import mysql
-from .. import routes
 from .factura import *
 
 

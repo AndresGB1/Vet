@@ -1,6 +1,6 @@
 from flask import Flask
 from rutas import routes
-from flask_mysqldb import MySQL
+from database import mysql
 import os
 
 
@@ -12,8 +12,8 @@ app.config['MYSQL_DB'] = os.getenv('DB') #'Base de datos'
 app.config['MYSQL_HOST'] = os.getenv('HOSTDB') #'localhost'
 app.secret_key = 'mysecretkey'
 
-mysql=MySQL(app)
+mysql.init_app(app)
 app.register_blueprint(routes) #Registrar las rutas
 
 if __name__ == '__main__':
-    app.run(port = 5000, debug = False)
+    app.run(port = 5000, debug = True)
